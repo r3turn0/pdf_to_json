@@ -1,0 +1,33 @@
+{
+  "name": "pdf_to_json",
+  "version": "1.0.0",
+  "description": "converts pdfs into json",
+  "keywords": [
+    "npm",
+    "node",
+    "pdf",
+    "json"
+  ],
+  "homepage": "https://github.com/r3turn0/pdf_to_json#readme",
+  "bugs": {
+    "url": "https://github.com/r3turn0/pdf_to_json/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/r3turn0/pdf_to_json.git"
+  },
+  "license": "ISC",
+  "author": "John Ericta",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "export-to-csv": "^1.4.0",
+    "json-2-csv": "^5.5.9",
+    "json-csv": "^4.0.18",
+    "json-to-csv-export": "^3.1.0",
+    "pdf2json": "^3.1.5"
+  }
+}
