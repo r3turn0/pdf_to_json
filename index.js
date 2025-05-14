@@ -1,10 +1,7 @@
-
-const fs = require("fs");
-const PDFParser = require("pdf2json"); // Import the pdf2json library
-let converter = require('json-2-csv');
-const { default: csvDownload } = require("json-to-csv-export");
-const { mkConfig, generateCsv, asString } = require('export-to-csv');
-const { csv } = require("json-csv");
+// const fs = require("fs");
+// const PDFParser = require("pdf2json"); // Import the pdf2json library
+// const { mkConfig, generateCsv, asString } = require('export-to-csv');
+const PdfConverter = require('./pdfConvert.js');
 
 async function convertPdfToJson(pdfPath) {
   return new Promise((resolve, reject) => {
@@ -132,5 +129,16 @@ async function convert(pdfSource, csvDestination) {
   }
 }
 
+// convert("./pdf/Z9K DT-AO-MZ 11.4.24.pdf", "./test/output.csv")
 
-convert("./pdf/Z9K DT-AO-MZ 11.4.24.pdf", "./test/output.csv")
+async function main() {
+  let converter = new PdfConverter();
+  //let pdf2json = await converter.convertPdfToJson("./pdf/Z9K DT-AO-MZ 11.4.24.pdf");
+  //console.log(pdf2json);
+  //let json2csv = await converter.convertJsonToCsv(pdf2json);
+  //console.log(json2csv);
+  let txt = await converter.convert("./pdf/Z9K DT-AO-MZ 11.4.24.pdf", "./test/output.txt");
+  console.log(txt);
+} 
+
+main();
