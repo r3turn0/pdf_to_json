@@ -1,4 +1,4 @@
-// const fs = require("fs");
+const fs = require("fs");
 // const PDFParser = require("pdf2json"); // Import the pdf2json library
 // const { mkConfig, generateCsv, asString } = require('export-to-csv');
 const PdfConverter = require('./pdfConvert.js');
@@ -133,12 +133,12 @@ async function convert(pdfSource, csvDestination) {
 
 async function main() {
   let converter = new PdfConverter();
-  //let pdf2json = await converter.convertPdfToJson("./pdf/Z9K DT-AO-MZ 11.4.24.pdf");
-  //console.log(pdf2json);
-  //let json2csv = await converter.convertJsonToCsv(pdf2json);
-  //console.log(json2csv);
-  let txt = await converter.convert("./pdf/Z9K DT-AO-MZ 11.4.24.pdf", "./test/output.txt");
+  // let pdf2json = await converter.convertPdfToJson("./pdf/Z9K DT-AO-MZ 11.4.24.pdf");
+  // let json2csv = await converter.convertJsonToCsv(pdf2json);
+  // fs.writeFileSync('./test/output.csv', json2csv);
+  let txt = await converter.convert("./pdf/Price List Caesarstone 2024 US.pdf", "./test/output2.txt");
   console.log(txt);
 } 
 
 main();
+
