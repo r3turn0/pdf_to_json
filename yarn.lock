@@ -5,6 +5,29 @@
 "@xmldom/xmldom@^0.9.6":
   version "0.9.6"
 
+adler-32@~1.3.0:
+  version "1.3.1"
+  resolved "https://registry.npmjs.org/adler-32/-/adler-32-1.3.1.tgz"
+  integrity sha512-ynZ4w/nUUv5rrsR8UUGoe1VC9hZj6V5hU9Qw1HlMDJGEJw5S7TfTErWTjMys6M7vr0YWcPqs3qAr4ss0nDfP+A==
+
+cfb@~1.2.1:
+  version "1.2.2"
+  resolved "https://registry.npmjs.org/cfb/-/cfb-1.2.2.tgz"
+  integrity sha512-KfdUZsSOw19/ObEWasvBP/Ac4reZvAGauZhs6S/gqNhXhI7cKwvlH7ulj+dOEYnca4bm4SGo8C1bTAQvnTjgQA==
+  dependencies:
+    adler-32 "~1.3.0"
+    crc-32 "~1.2.0"
+
+codepage@~1.15.0:
+  version "1.15.0"
+  resolved "https://registry.npmjs.org/codepage/-/codepage-1.15.0.tgz"
+  integrity sha512-3g6NUTPd/YtuuGrhMnOMRjFc+LJw/bnMp3+0r/Wcz3IXUuCosKRJvMphm5+Q+bvTVGcJJuRvVLuYba+WojaFaA==
+
+crc-32@~1.2.0, crc-32@~1.2.1:
+  version "1.2.2"
+  resolved "https://registry.npmjs.org/crc-32/-/crc-32-1.2.2.tgz"
+  integrity sha512-ROmzCKrTnOwybPcJApAA6WBWij23HVfGVNKqqrZpuyZOHqK2CwHSvpGuyt/UNNvaIjEd8X5IFGp4Mh+Ie1IHJQ==
+
 deeks@3.1.0:
   version "3.1.0"
   resolved "https://registry.npmjs.org/deeks/-/deeks-3.1.0.tgz"
@@ -15,10 +38,20 @@ doc-path@4.1.1:
   resolved "https://registry.npmjs.org/doc-path/-/doc-path-4.1.1.tgz"
   integrity sha512-h1ErTglQAVv2gCnOpD3sFS6uolDbOKHDU1BZq+Kl3npPqroU3dYL42lUgMfd5UimlwtRgp7C9dLGwqQ5D2HYgQ==
 
+dotenv@^16.5.0:
+  version "16.5.0"
+  resolved "https://registry.npmjs.org/dotenv/-/dotenv-16.5.0.tgz"
+  integrity sha512-m/C+AwOAr9/W1UOIZUo232ejMNnJAJtYQjUbHoNTBNTJSvqzzDh7vnrei3o3r3m9blf6ZoDkvcw0VmozNRFJxg==
+
 export-to-csv@^1.4.0:
   version "1.4.0"
   resolved "https://registry.npmjs.org/export-to-csv/-/export-to-csv-1.4.0.tgz"
   integrity sha512-6CX17Cu+rC2Fi2CyZ4CkgVG3hLl6BFsdAxfXiZkmDFIDY4mRx2y2spdeH6dqPHI9rP+AsHEfGeKz84Uuw7+Pmg==
+
+frac@~1.1.2:
+  version "1.1.2"
+  resolved "https://registry.npmjs.org/frac/-/frac-1.1.2.tgz"
+  integrity sha512-w/XBfkibaTl3YDqASwfDUqkna4Z2p9cFSr1aHDt0WoMTECnRfBOv2WArlZILlqgWlmdIlALXGpM2AOhEk5W3IA==
 
 json-2-csv@^5.5.9:
   version "5.5.9"
@@ -44,3 +77,33 @@ pdf2json@^3.1.5:
   integrity sha512-djZPInDLNuJU+o6GaJNvcoUh6MtUAx3IYTQCTxywHzeg1jC5YWgz/XzlgmduxxBblpMTqY2fjcWwvyRdGPTyrQ==
   dependencies:
     "@xmldom/xmldom" "^0.9.6"
+
+ssf@~0.11.2:
+  version "0.11.2"
+  resolved "https://registry.npmjs.org/ssf/-/ssf-0.11.2.tgz"
+  integrity sha512-+idbmIXoYET47hH+d7dfm2epdOMUDjqcB4648sTZ+t2JwoyBFL/insLfB/racrDmsKB3diwsDA696pZMieAC5g==
+  dependencies:
+    frac "~1.1.2"
+
+wmf@~1.0.1:
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/wmf/-/wmf-1.0.2.tgz"
+  integrity sha512-/p9K7bEh0Dj6WbXg4JG0xvLQmIadrner1bi45VMJTfnbVHsc7yIajZyoSoK60/dtVBs12Fm6WkUI5/3WAVsNMw==
+
+word@~0.3.0:
+  version "0.3.0"
+  resolved "https://registry.npmjs.org/word/-/word-0.3.0.tgz"
+  integrity sha512-OELeY0Q61OXpdUfTp+oweA/vtLVg5VDOXh+3he3PNzLGG/y0oylSOC1xRVj0+l4vQ3tj/bB1HVHv1ocXkQceFA==
+
+xlsx@^0.18.5:
+  version "0.18.5"
+  resolved "https://registry.npmjs.org/xlsx/-/xlsx-0.18.5.tgz"
+  integrity sha512-dmg3LCjBPHZnQp5/F/+nnTa+miPJxUXB6vtk42YjBBKayDNagxGEeIdWApkYPOf3Z3pm3k62Knjzp7lMeTEtFQ==
+  dependencies:
+    adler-32 "~1.3.0"
+    cfb "~1.2.1"
+    codepage "~1.15.0"
+    crc-32 "~1.2.1"
+    ssf "~0.11.2"
+    wmf "~1.0.1"
+    word "~0.3.0"

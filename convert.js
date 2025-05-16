@@ -2,6 +2,7 @@
 const fs = require("fs");
 const PDFParser = require("pdf2json"); // Import the pdf2json library
 const { mkConfig, generateCsv, asString } = require('export-to-csv');
+const XLSX = require('xlsx'); // Import the xlsx library
 
 class PdfConverter {
     constructor() {
@@ -108,23 +109,6 @@ class PdfConverter {
                 return this.convertJsonToCsv(jsonData);
             })
             .then(csvData => {
-                // let txt = '';
-                // const csv = csvData.split('"pageNumber","lineItem"');
-                // console.log("CSV Header:", csv[0]);
-                // const data = csv[1];
-                // console.log("CSV Data:", data);
-                // const dataArray = data ? data.split("\n").filter(line => line.trim() !== "") : []; // Ensure data is defined
-                // txt = csv[0] ? csv[0] : '"pageNumber","lineItem"' + '\n';
-                // console.log('CSV Header text:', txt)
-                // for(let i = 0; i < dataArray.length; i++) {
-                //     let a = dataArray[i].split(",")[0]; // number
-                //     let b = dataArray[i].split(",")[1]; // string
-                //     let lineHeader = "'Item Name, Vendor Item Code, Sales Description, Unit of Measure, Unit/Box, Item Color, Item Size, PCs in a Box, SF by PC/SHEET, SF By Box, Cost, Group'";
-                //     let line = a + ',' + lineHeader + '\n' + 'Page: ' + a + ' Line Item,' + b;
-                //     txt += line  +'\n';
-                // }
-                // let txt2 = '"pageNumber","lineItem"'.trim() + '\n' + txt.trim();
-                // fs.writeFileSync(csvDestination, txt2, 'utf8');
                 fs.writeFileSync(csvDestination, csvData, 'utf8');
                 console.log("CSV file created successfully.");
                 resolve("Conversion completed");
@@ -142,5 +126,57 @@ class PdfConverter {
     }
 } // End of class
 
+class XlsxConverter {
+    constructor() {
+        this.workbook = null;
+    }
+
+    convertXlsxToJson(xlsxPath) {
+        return new Promise((resolve, reject) => {
+            try {
+                this.workbook = XLSX.readFile(xlsxPath);
+                const jsonData = XLSX.utils.sheet_to_json(this.workbook.Sheets[this.workbook.SheetNames[0]]);
+                resolve(jsonData);
+            } catch (error) {
+                console.error("Error reading XLSX file:", error);
+                reject(error);
+            }
+        });
+    }
+
+    convertJsonToCsv(jsonData, csvDestination) {
+        return new Promise((resolve, reject) => {
+            try {
+                const csvData = XLSX.utils.json_to_sheet(jsonData);
+                XLSX.writeFile(csvDestination, csvData);
+                console.log("CSV file created successfully.");
+                resolve("Conversion completed");
+            } catch (error) {
+                console.error("Error converting JSON to CSV:", error);
+                reject(error);
+            }
+        });
+    }
+
+    convert(xlsxSource, csvDestination) {
+        return new Promise((resolve, reject) => {
+            this.convertXlsxToJson(xlsxSource)
+                .then(jsonData => {
+                    return this.convertJsonToCsv(jsonData, csvDestination);
+                })
+                .then(() => {
+                    resolve("Conversion completed");
+                })
+                .catch(error => {
+                    console.error("Error during conversion:", error);
+                    reject(error);
+                });
+        });
+    }
+}
+
 // Export class
-module.exports= PdfConverter;
+module.exports = {
+    PdfConverter,
+    XlsxConverter
+}

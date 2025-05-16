@@ -24,10 +24,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "dotenv": "^16.5.0",
     "export-to-csv": "^1.4.0",
     "json-2-csv": "^5.5.9",
     "json-csv": "^4.0.18",
     "json-to-csv-export": "^3.1.0",
-    "pdf2json": "^3.1.5"
+    "pdf2json": "^3.1.5",
+    "xlsx": "^0.18.5"
   }
 }
