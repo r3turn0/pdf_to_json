@@ -53,12 +53,12 @@ async function readDirectory(directoryPath, outputDirectory) {
       if (fileType === "pdf") {
         console.log(`Processing PDF file: ${file}`);
         let converter = new PdfConverter();
-        let csv = await converter.convert(file, outputDirectory);
+        let csv = await converter.convert(`${directoryPath}/${file}`, outputDirectory);
         console.log("Converted to CSV:", csv);
       } else if (fileType === "xlsx") {
         console.log(`Processing Excel file: ${file}`);
         let converter = new XlsxConverter();
-        let csv = await converter.convert(file, outputDirectory);
+        let csv = await converter.convert(`${directoryPath}/${file}`, outputDirectory);
         console.log("Converted to CSV:",csv);
       } else {
         console.log(`Skipping non-PDF/Excel file: ${file}`);
