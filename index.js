@@ -73,11 +73,12 @@ async function readDirectory(directoryPath, outputDirectory) {
 async function main() {
   const directoryPath = process.argv[2];
   const outputDirectory = process.argv[3];
+  const filename = process.argv[4];
   if (!directoryPath || !outputDirectory) {
     console.error("Please provide the input and output directory paths.");
     return;
   }
-  await readDirectory(directoryPath, outputDirectory);
+  await readDirectory(directoryPath, `${outputDirectory}/${filename}`);
 }
 
 // Execute the main function
