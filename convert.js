@@ -54,7 +54,7 @@ class PdfConverter {
         return new Promise((resolve, reject) => {
             try {
                 const csvConfig = mkConfig({
-                    useKeysAsHeaders: true,
+                    useKeysAsHeaders: false,
                     showColumnHeaders: true,
                     columnHeaders: ['pageNumber', 'lineItem', 'Item Name', 'Vendor Item Code',
                         'Sales Description', 'Unit of Measure', 'Unit/Box', 'Item Color', 'Item Size',
