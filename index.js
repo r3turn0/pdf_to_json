@@ -77,7 +77,7 @@ async function uploadOpenAiFile(file, client) {
       // Upload the file to OpenAI then create a response
       client.uploadFile(file).then((file_Id) => {
         console.log("File ID:", file_Id);
-        resolve(file_Id);
+        resolve({file_id: file_Id, file: file});
       }).catch((error) => {
         console.error("Error uploading file:", error);
         reject(error);
@@ -90,11 +90,11 @@ async function uploadOpenAiFile(file, client) {
   }
 }
 
-async function createOpenAiResponse(obj, file_Id, client) {
+async function createOpenAiResponse(client, obj, file, pdf) {
   try {
     return new Promise((resolve, reject) => {
       // Create a response using the OpenAI API
-      client.createResponse(obj, file_Id).then((response) => {
+      client.createResponse(obj, file, pdf).then((response) => {
         console.log("Response from OpenAI:", response);
         resolve(response);
       }).catch((error) => {
@@ -112,20 +112,25 @@ async function createOpenAiResponse(obj, file_Id, client) {
 // Main function to execute the conversion, upload and response for OpenAI
 async function main() {
   const directoryPath = process.argv[2];
+  const files = fs.readdirSync(directoryPath);
+  const pdf = files[0];
   const outputDirectory = process.argv[3];
+  // The text or csv file to be saved in output directory
   const filename = process.argv[4];
   const file = `${outputDirectory}/${filename}`
   if (!directoryPath || !outputDirectory) {
     console.error("Please provide the input and output directory paths.");
     return;
   }
+  // input directory and output file
   await readDirectory(directoryPath, file);
   const client = new openAiClient(process.env.APIKEY);
-  const file_Id = await uploadOpenAiFile(file, client);
+  let file_obj = {file: null, fileID: null};
+  //file_obj = await uploadOpenAiFile('pdf/' + pdf, client);
   const obj = {
-    model: 'o3',
-    instructions: `Parse the CSV text file containing page numbers, line items, and field names, and 
-    insert the correct values for each field name based on the data contained in the line items column, which are separated by page. The output should be in CSV format.
+    model: 'gpt-4.1',
+    instructions: `Parse the file containing page numbers, line items, and field names, and 
+    insert the correct values for each field name based on the data contained in the line items column, which are separated by page. The output should be a full CSV for ALL pages.
     Workflow:
     1.	Chunk or window the unstructured text. 
     2.	Create Embeddings for both fields/queries and chunks.
@@ -138,11 +143,20 @@ async function main() {
     Finally: 
     8. Use regex after narrowing search area with embeddings/semantic search, for high precision.` 
   }
-  const response = await createOpenAiResponse(obj, file_Id, client);
-  console.log('Response from OpenAI', response);
+  const response = await createOpenAiResponse(client, obj, file_obj, pdf);
+  console.log('Response from OpenAI:', response);
+  if(response.output_text) {
+    const output = response.output_text;
+    console.log("Output from OpenAI:", output);
+    const outputFile = `${outputDirectory}/${process.argv[5]}`;
+    fs.writeFileSync(outputFile, output);
+    console.log("Output written to:", outputFile);
+    
+  }
 }
 
 // Execute the main function
+// Example usage: node index.js <input_directory> <output_directory> <output_file> <output_csv>
 main()
 .then(() => {
   console.log("All files processed successfully.");
