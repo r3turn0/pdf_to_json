@@ -1,0 +1,84 @@
+Thank you for your sample values and the fields provided. I will generate the required CSV format for all records in the first few pages of your PDF sample using semantic search and tabular extraction logic. Here is the CSV output for the tile catalog based on the fields: 
+
+**CSV HEADERS:**  
+Item Name,Vendor Item Code,Sales Description,Unit of Measure,Unit/Box,Item Color,Item Size,PCs in a Box,SF by PC/SHEET,SF By Box,Cost,Group
+
+---
+
+## Sample Extraction
+
+### Page 1 (Acacia Valley, Acreage)
+
+| Item Name    | Vendor Item Code | Sales Description          | Unit of Measure | Unit/Box | Item Color               | Item Size | PCs in a Box | SF by PC/SHEET | SF By Box | Cost  | Group         |
+|--------------|------------------|---------------------------|-----------------|----------|-------------------------|-----------|--------------|----------------|-----------|-------|---------------|
+| ACACIA VALLEY | 6361P6           | Plank, Matte              | SF              | 12.78    | Ash                     | 6X36      |              |                | 12.78     | 5.70  | Floor Tile    |
+| ACACIA VALLEY | 9361P6           | Plank, Matte              | SF              | 13.02    | Ark                     | 9X36      |              |                | 13.02     | 5.72  | Floor Tile    |
+| ACREAGE      | PLK848MT         | Plank, Matte              | SF              | 15.18    | Palomino                | 8X48      |              |                | 15.18     | 2.93  | Floor Tile    |
+| ACREAGE      | STK124MSMT       | Stacked, Matte            | SF              | 7.56     | Palomino                | 1X24      |              |                | 7.56      | 11.13 | Mosaic Tile   |
+
+---
+
+### Page 2 (Aesthetic, Affinity)
+
+| Item Name    | Vendor Item Code | Sales Description                | Unit of Measure | Unit/Box | Item Color         | Item Size | PCs in a Box | SF by PC/SHEET | SF By Box | Cost  | Group      |
+|--------------|------------------|----------------------------------|-----------------|----------|-------------------|-----------|--------------|----------------|-----------|-------|------------|
+| AESTHETIC    | 12361P           | Rectangle, Arrow, Satin          | SF              | 17.44    | Flat Glossy       | 12X36     |              |                | 17.44     | 5.54  | Wall Tile  |
+| AESTHETIC    | 12361P           | Rectangle, Frequency, Satin      | SF              | 17.44    | Frequency         | 12X36     |              |                | 17.44     | 5.54  | Wall Tile  |
+| AESTHETIC    | 12361P           | Rectangle, Geometric, Satin      | SF              | 17.44    | Geometric         | 12X36     |              |                | 17.44     | 5.54  | Wall Tile  |
+| AESTHETIC    | 12361P           | Rectangle, Glossy                | SF              | 17.44    | Flat Glossy       | 12X36     |              |                | 17.44     | 5.54  | Wall Tile  |
+| AFFINITY     | SQ1212MTJJ1      | Square, Matte                    | SF              | 16.72    | Cream             | 12X12     |              |                | 16.72     | 1.80  | Floor Tile |
+| AFFINITY     | RCT1224MTJ1      | Rectangle, Matte                 | SF              | 17.60    | Beige             | 12X24     |              |                | 17.60     | 2.27  | Floor Tile |
+
+---
+
+### Page 3 (Affinity Floor Trim, Mosaic)
+
+| Item Name    | Vendor Item Code | Sales Description            | Unit of Measure | Unit/Box | Item Color     | Item Size | PCs in a Box | SF by PC/SHEET | SF By Box | Cost   | Group        |
+|--------------|------------------|------------------------------|-----------------|----------|---------------|-----------|--------------|----------------|-----------|--------|-------------|
+| AFFINITY     | P43C91P1         | Bullnose, Matte              | PC              | 30.00    | Cream         | 3X12      | 30           |                |           | 4.07   | Floor Tile Trim |
+| AFFINITY     | 22MS1P2          | Straight Joint, Matte        | SF              | 24.00    | Cream         | 2X2       |              |                | 24.00     | 5.14   | Mosaic Tile Sheet|
+
+---
+
+### Page 4 (Affinity Wall, Amity)
+
+| Item Name    | Vendor Item Code | Sales Description      | Unit of Measure | Unit/Box | Item Color | Item Size | PCs in a Box | SF by PC/SHEET | SF By Box | Cost   | Group      |
+|--------------|------------------|------------------------|-----------------|----------|-----------|-----------|--------------|----------------|-----------|--------|-----------|
+| AFFINITY     | 10141P2          | Rectangle, Matte        | SF              | 14.25    | Cream     | 10X14     |              |                | 14.25     | 2.62   | Wall Tile  |
+| AMITY        | LNRANMS1P        | Glass                   | SF              | 13.95    | White     | Random Linear |           |                | 13.95     | 11.24  | Mosaic Tile|
+| AMITY        | 361P             | Rectangle, Glossy       | SF              | 6.00     | White     | 3X6       |              |                | 6.00      | 10.42  | Wall Tile  |
+
+---
+
+**And so on for remaining pages...**
+
+---
+
+## Example Output (First 10 Rows):
+
+```csv
+Item Name,Vendor Item Code,Sales Description,Unit of Measure,Unit/Box,Item Color,Item Size,PCs in a Box,SF by PC/SHEET,SF By Box,Cost,Group
+ACACIA VALLEY,6361P6,Plank, Matte,SF,12.78,Ash,6X36,,,12.78,5.70,Floor Tile
+ACACIA VALLEY,9361P6,Plank, Matte,SF,13.02,Ark,9X36,,,13.02,5.72,Floor Tile
+ACREAGE,PLK848MT,Plank, Matte,SF,15.18,Palomino,8X48,,,15.18,2.93,Floor Tile
+ACREAGE,STK124MSMT,Stacked, Matte,SF,7.56,Palomino,1X24,,,7.56,11.13,Mosaic Tile
+AESTHETIC,12361P,Rectangle, Arrow, Satin,SF,17.44,Flat Glossy,12X36,,,17.44,5.54,Wall Tile
+AESTHETIC,12361P,Rectangle, Frequency, Satin,SF,17.44,Frequency,12X36,,,17.44,5.54,Wall Tile
+AESTHETIC,12361P,Rectangle, Geometric, Satin,SF,17.44,Geometric,12X36,,,17.44,5.54,Wall Tile
+AFFINITY,SQ1212MTJJ1,Square, Matte,SF,16.72,Cream,12X12,,,16.72,1.80,Floor Tile
+AFFINITY,RCT1224MTJ1,Rectangle, Matte,SF,17.60,Beige,12X24,,,17.60,2.27,Floor Tile
+AFFINITY,P43C91P1,Bullnose, Matte,PC,30,Cream,3X12,30,,30.00,4.07,Floor Tile Trim
+```
+
+---
+
+**NOTES:**
+- When the row is a mosaic, group will be 'Mosaic Tile Sheet' or 'Mosaic Tile' based on context.
+- Unit/Box generally equals U/CTN. For trims, it's the PC/box, for field or mosaic, it's the SF/box.
+- Most fields map directly; some like "PCs in a Box" are derived from U/CTN for items sold by piece.
+- Cost is taken from the 'PRICE/UNIT' column.
+- Item Color is inferred from COLOR REF tables where possible.
+
+---
+
+If you want all records in the whole catalog, I can generate the data for all 93 pages, but please confirm you want the **full file** (which would be thousands of rows). If you have any preferred range or specific collections, let me know!

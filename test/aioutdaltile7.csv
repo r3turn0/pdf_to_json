@@ -1,0 +1,77 @@
+Item Name,Vendor Item Code,Sales Description,Unit of Measure,Unit/Box,Item Color,Item Size,PCs in a Box,SF by PC/SHEET,SF By Box,Cost,Group
+881P,881P,"Square, Matte",SF,10.32,"Chalk, Sand, Smoke, Mud, Denim, Shadow, Midnight",8X8,,"",,5.09,D_SEGNI
+88BIRD1P,88BIRD1P,"Birdseye, Matte",PC,24.00,,"8X8",24,,"",3.22,D_SEGNI
+88DIAMOND1P,88DIAMOND1P,"Double Diamond, Matte",PC,24.00,,"8X8",24,,"",3.22,D_SEGNI
+88KALEIDO1P,88KALEIDO1P,"Kaleido, Matte",PC,24.00,,"8X8",24,,"",3.22,D_SEGNI
+88PARIS1P,88PARIS1P,"Parisan, Matte",PC,24.00,,"8X8",24,,"",3.22,D_SEGNI
+88PEAK1P,88PEAK1P,"Peak, Matte",PC,24.00,,"8X8",24,,"",3.22,D_SEGNI
+88PLAID1P,88PLAID1P,"Plaid, Matte",PC,24.00,,"8X8",24,,"",3.22,D_SEGNI
+88STAR1P,88STAR1P,"Starlit, Matte",PC,24.00,,"8X8",24,,"",3.22,D_SEGNI
+88STELLA1P,88STELLA1P,"Stella, Matte",PC,24.00,,"8X8",24,,"",3.22,D_SEGNI
+881P,881P,"Square, Matte",SF,10.32,"Mustard, Tangerine, Indigo",8X8,,,5.19,D_SEGNI COLOR
+881P,881P,"Clover, Matte",PC,24.00,,"8X8",24,,"",3.03,D_SEGNI COLOR
+881P,881P,"Honeycomb, Matte",PC,24.00,,"8X8",24,,"",3.03,D_SEGNI COLOR
+881P,881P,"Lily, Matte",PC,24.00,,"8X8",24,,"",3.03,D_SEGNI COLOR
+881P,881P,"Monarch, Matte",PC,24.00,,"8X8",24,,"",3.03,D_SEGNI COLOR
+881P,881P,"Square, Matte",SF,10.32,"White, Grey, Blue, Black",8X8,,,5.16,D_SEGNI TERRAZZO
+881P,881P,"Chalet, Matte",PC,24.00,,"8X8",24,,"",3.29,D_SEGNI TERRAZZO
+881P,881P,"Croix, Matte",PC,24.00,,"8X8",24,,"",3.29,D_SEGNI TERRAZZO
+881P,881P,"Fleur-De-Lis, Matte",PC,24.00,,"8X8",24,,"",3.29,D_SEGNI TERRAZZO
+881P,881P,"Fresco, Matte",PC,24.00,,"8X8",24,,"",3.29,D_SEGNI TERRAZZO
+6241PR,6241PR,"Plank, Matte",SF,15.00,"Stone, Steel, Graphite",6X24,,,1.88,EDGEWOOD
+PLK624MTJ1,PLK624MTJ1,"Plank, Matte",SF,16.10,"Stone, Steel, Graphite",6X24,,,1.88,EDGEWOOD
+RCT1224MTJ1,RCT1224MTJ1,"Rectangle, Matte",SF,17.60,"Gentle Breeze",12X24,,,1.42,ELYSIAN
+P43C91P1,P43C91P1,"P43C9, Bullnose, Matte",PC,30.00,"Gentle Breeze",3X12,30,,"",4.01,ELYSIAN
+RCT1224MT,RCT1224MT,"Rectangle, Matte",SF,15.50,"Ash Light, Light Grey, Grey, Dark Grey, Ash Grey, Grey Deco, Dark Grey Deco",12X24,,,5.16,FONDAMENTA
+SQU2424MT,SQU2424MT,"Square, Matte",SF,11.60,"Ash Light, Light Grey, Grey, Dark Grey, Ash Grey, Grey Deco, Dark Grey Deco",24X24,,,5.93,FONDAMENTA
+RCT2448MT,RCT2448MT,"Rectangle, Matte",SF,15.44,"Ash Light, Light Grey, Grey, Dark Grey, Ash Grey, Grey Deco, Dark Grey Deco",24X48,,,6.15,FONDAMENTA
+RCT1224MT,RCT1224MT,"Rectangle, Matte",SF,17.02,"Beam, Terra, Chroma, Basalt",12X24,,,4.72,FORGEHAUS
+SQU2424MT,SQU2424MT,"Square, Matte",SF,15.21,"Beam, Terra, Chroma, Basalt",24X24,,,4.72,FORGEHAUS
+RCT2448MT,RCT2448MT,"Rectangle, Matte",SF,15.26,"Beam, Terra, Chroma, Basalt",24X48,,,5.25,FORGEHAUS
+PC36C9MT,PC36C9MT,"PC36C9, Cove BC, Matte",PC,6.00,"Beam, Terra, Chroma, Basalt",1X6,6,,"",9.45,FORGEHAUS
+P43F9MT,P43F9MT,"P43F9, Bullnose, Matte",PC,10.00,"Beam, Terra, Chroma, Basalt",3X24,10,,"",6.82,FORGEHAUS
+P36C9MT,P36C9MT,"P36C9, Cove Base, Matte",PC,12.00,"Beam, Terra, Chroma, Basalt",6X12,12,,"",9.45,FORGEHAUS
+TPZ24MSMT,TPZ24MSMT,"Trapezoid, Matte",SF,9.50,"Beam, Terra, Chroma, Basalt",2X4,,,14.70,FORGEHAUS
+1224RPLMT,1224RPLMT,"Rectangle, Ripple, Matte",SF,15.56,"Beam, Terra, Chroma, Basalt",12X24,,,6.38,FORGEHAUS
+S1/212JMT,S1/212JMT,"S1/212J, Jolly, Matte",CD,6.00,"Beam, Terra, Chroma, Basalt",1/2X12,6,,11.38,FORGEHAUS
+33HEXMS1P,33HEXMS1P,"Hexagon, Satin",PC,6.00,"Champagne Gold, Bronze, Nickel, Gunmetal",3X3,6,,"",50.10,GEOMETAL
+25HARMS1P,25HARMS1P,"Harlequin, Satin",PC,6.00,"Champagne Gold, Bronze, Nickel, Gunmetal",2X5,6,,"",50.20,GEOMETAL
+66FLOR1P,66FLOR1P,"Floret, Satin",PC,48.00,"Champagne Gold, Bronze, Nickel, Gunmetal",6X6,48,,"",14.15,GEOMETAL
+66GEOM1P,66GEOM1P,"Geometric, Satin",PC,48.00,"Champagne Gold, Bronze, Nickel, Gunmetal",6X6,48,,"",14.51,GEOMETAL
+66ORNA1P,66ORNA1P,"Ornamental, Satin",PC,48.00,"Champagne Gold, Bronze, Nickel, Gunmetal",6X6,48,,"",15.58,GEOMETAL
+DIA1/2121P,DIA1/2121P,"DIA1/212, Diamond Liner, Satin",PC,24.00,"Champagne Gold, Bronze, Nickel, Gunmetal",1/2X12,24,,"",5.12,GEOMETAL
+S1/212J1P,S1/212J1P,"S1/212J, Jolly, Satin",PC,192.00,"Champagne Gold, Bronze, Nickel, Gunmetal",1/2X12,192,,"",5.64,GEOMETAL
+SQU1/2121P,SQU1/2121P,"SQU1/212, Square Liner, Satin",PC,24.00,"Champagne Gold, Bronze, Nickel, Gunmetal",1/2X12,24,,"",5.07,GEOMETAL
+412MODB1P2,412MODB1P2,"Rectangle, Bevel, Glossy",SF,7.98,"Refined White, English Taupe, Scholarly Gray",4X12,,,3.68,HAWTHORNE
+412MOD1P2,412MOD1P2,"Rectangle, Glossy",SF,10.64,"Refined White, English Taupe, Scholarly Gray",4X12,,,3.36,HAWTHORNE
+824BEV1P2,824BEV1P2,"Rectangle, Bevel, Glossy",SF,13.30,"Refined White, English Taupe, Scholarly Gray",8X24,,,4.47,HAWTHORNE
+8241P2,8241P2,"Rectangle, Glossy",SF,13.30,"Refined White, English Taupe, Scholarly Gray",8X24,,,3.83,HAWTHORNE
+1014BEV1P2,1014BEV1P2,"Rectangle, Bevel, Glossy",SF,12.38,"Refined White, English Taupe, Scholarly Gray",10X14,,,3.35,HAWTHORNE
+10141P2,10141P2,"Rectangle, Glossy",SF,14.25,"Refined White, English Taupe, Scholarly Gray",10X14,,,2.20,HAWTHORNE
+S1/212J1P2,S1/212J1P2,"S1/212J, Jolly, Glossy",PC,192.00,"Refined White, English Taupe, Scholarly Gray",1/2X12,192,,"",6.84,HAWTHORNE
+6361PR,6361PR,"Plank, Matte",SF,13.05,"Gray, Brown",6X36,,,1.46,HIGH RIDGE
+RCT1224LP,RCT1224LP,"Rectangle, Light Polished",SF,17.02,"Heirloom White, Antique Beige, Heritage Gray, Vintage Black",12X24,,,3.61,HISTORIA
+24241LK,24241LK,"Square, Light Polished",SF,15.20,"Heirloom White, Antique Beige, Heritage Gray, Vintage Black",24X24,,,3.61,HISTORIA
+24481LK,24481LK,"Rectangle, Light Polished",SF,15.26,"Heirloom White, Antique Beige, Heritage Gray, Vintage Black",24X48,,,4.55,HISTORIA
+48DECO1L2,48DECO1L2,"Half Hex, Light Polished",SF,3.56,"Heirloom White, Antique Beige, Heritage Gray, Vintage Black",4X8,,,12.39,HISTORIA
+P43F91LK,P43F91LK,"P43F9, Bullnose, Light Polished",PC,10.00,"Heirloom White, Antique Beige, Heritage Gray, Vintage Black",3X24,10,,"",6.17,HISTORIA
+RCT1224MT,RCT1224MT,"Rectangle, Matte",SF,17.02,"Lumen, Mirage, Stage, Smoke, Mysterious, Magical, Mystifying",12X24,,,4.18,ILLUSIONIST
+SQU2424MT,SQU2424MT,"Square, Matte",SF,15.21,"Lumen, Mirage, Stage, Smoke, Mysterious, Magical, Mystifying",24X24,,,4.18,ILLUSIONIST
+RCT2448MT,RCT2448MT,"Rectangle, Matte",SF,15.26,"Lumen, Mirage, Stage, Smoke, Mysterious, Magical, Mystifying",24X48,,,4.77,ILLUSIONIST
+P43F9MT,P43F9MT,"P43F9, Bullnose, Matte",PC,10.00,"Lumen, Mirage, Stage, Smoke, Mysterious, Magical, Mystifying",3X24,10,,"",8.39,ILLUSIONIST
+STJ33MSMT,STJ33MSMT,"Straight Joint, Matte",SF,7.00,"Lumen, Mirage, Stage, Smoke, Mysterious, Magical, Mystifying",3X3,,,11.74,ILLUSIONIST
+STK124MSMT,STK124MSMT,"Stacked, Matte",SF,7.56,"Lumen, Mirage, Stage, Smoke, Mysterious, Magical, Mystifying",1X24,,,12.16,ILLUSIONIST
+HEX8MBST,HEX8MBST,"Hexagon, Microban, Satin",SF,9.37,"Crema, Ember, Olive, Indigo, Ink",8,,,4.21,INYO
+RCT28MBST,RCT28MBST,"Rectangle, Microban, Satin",SF,4.00,"Crema, Ember, Olive, Indigo, Ink",2X8,,,5.43,INYO
+STJ16MBMSST,STJ16MBMSST,"Straight Joint, Microban, Satin",SF,8.30,"Crema, Ember, Olive, Indigo, Ink",1X6,,,8.36,INYO
+PNYRDMBMSMT,PNYRDMBMSMT,"Microban, Matte",SF,10.60,"Crema, Ember, Olive, Indigo, Ink",Penny Rounds,,,8.36,INYO
+624S1PR,624S1PR,"Plank, Matte",SF,14.53,"Ginger, Caraway, Spice, Nutmeg",6X24,,,1.63,KNOXWOOD
+PLK624MTJ1,PLK624MTJ1,"Plank, Matte",SF,16.10,"Ginger, Caraway, Spice, Nutmeg",6X24,,,1.63,KNOXWOOD
+1224A1PF,1224A1PF,"Rectangle, Decorative Inlay, Matte",SF,17.37,"Cosmopolitan, Martini, Sidecar, Spritzer",12X24,,,3.76,LOUNGE14
+1224A1PF,1224A1PF,"Rectangle, Matte",SF,17.37,"Cosmopolitan, Martini, Sidecar, Spritzer",12X24,,,3.05,LOUNGE14
+SC36C9T1P2,SC36C9T1P2,"SC36C9, Cove Base Outcorner, Matte",PC,6.00,"Cosmopolitan, Martini, Sidecar, Spritzer",1X6,6,,"",9.66,LOUNGE14
+324A1P1,324A1P1,"P43F9, Bullnose, Matte",PC,15.00,"Cosmopolitan, Martini, Sidecar, Spritzer",3X24,15,,"",9.62,LOUNGE14
+S36C9T1P2,S36C9T1P2,"S36C9, Cove Base, Matte",PC,12.00,"Cosmopolitan, Martini, Sidecar, Spritzer",6X12,12,,"",9.77,LOUNGE14
+34MS1P,34MS1P,"Straight Joint, Glass",SF,7.60,"Champagne, Pearl, Caramel, Sage, Blue Patina, Silver, Violet, Charcoal",3X4,,,25.97,LUMINESCENCE
+
+[Note: Due to size, only the first block of detailed records filled per your exact specification fields is shown. If you need the next set of records for the entire catalogue continue or specify page range.]

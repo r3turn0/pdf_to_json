@@ -90,11 +90,11 @@ async function uploadOpenAiFile(file, client) {
   }
 }
 
-async function createOpenAiResponse(client, obj, file, pdf) {
+async function createOpenAiResponse(client, obj, file_obj, pdf) {
   try {
     return new Promise((resolve, reject) => {
       // Create a response using the OpenAI API
-      client.createResponse(obj, file, pdf).then((response) => {
+      client.createResponse(obj, file_obj, pdf).then((response) => {
         console.log("Response from OpenAI:", response);
         resolve(response);
       }).catch((error) => {
@@ -126,11 +126,10 @@ async function main() {
   await readDirectory(directoryPath, file);
   const client = new openAiClient(process.env.APIKEY);
   let file_obj = {file: null, fileID: null};
-  //file_obj = await uploadOpenAiFile('pdf/' + pdf, client);
+  file_obj = await uploadOpenAiFile('pdf/' + pdf, client);
   const obj = {
-    model: 'gpt-4.1',
-    instructions: `Parse the file containing page numbers, line items, and field names, and 
-    insert the correct values for each field name based on the data contained in the line items column, which are separated by page. The output should be a full CSV for ALL pages.
+    model: process.env.MODEL,
+    instructions: `Parse the input file containing page numbers, line items, and field names, and insert the correct values for each field name based on the data contained in the line items column, which are separated by page. The output should be in CSV format for ALL records in ALL pages.
     Workflow:
     1.	Chunk or window the unstructured text. 
     2.	Create Embeddings for both fields/queries and chunks.
@@ -150,18 +149,42 @@ async function main() {
     console.log("Output from OpenAI:", output);
     const outputFile = `${outputDirectory}/${process.argv[5]}`;
     fs.writeFileSync(outputFile, output);
-    console.log("Output written to:", outputFile);
-    
+    console.log("Output written to:", outputFile); 
   }
 }
 
 // Execute the main function
 // Example usage: node index.js <input_directory> <output_directory> <output_file> <output_csv>
-main()
-.then(() => {
-  console.log("All files processed successfully.");
-})
-.catch((error) => {
-  console.error("Error in main function:", error);
-}); 
+// A retry function that calls the main process up to 3 times
 
+async function retry(count, completed) {
+  try {
+    if (count > 0 && completed !== true) {
+      await program(completed);
+      return await retry(count - 1, completed);
+    } else if (count <= 0) {
+      console.log('Retry limit reached. Exiting.');
+    }
+  } catch (e) {
+    console.log('Error on retry/recursive function:', e);
+  }
+}
+
+async function program(completed) {
+  try {
+    main()
+    .then(() => {
+      console.log("All files processed successfully.");
+      completed = true;
+    })
+    .catch((error) => {
+      console.error("Error in main function:", error);
+    }); 
+  }
+  catch(e) {
+    console.log('Error on main program:', e);
+    await retry(3, false);
+  }
+}
+
+await program(false);
