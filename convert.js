@@ -3,6 +3,7 @@ const fs = require("fs");
 const PDFParser = require("pdf2json"); // Import the pdf2json library
 const { mkConfig, generateCsv, asString } = require('export-to-csv');
 const XLSX = require('xlsx'); // Import the xlsx library
+const CSV = require('csvtojson');
 
 class PdfConverter {
     constructor() {
@@ -175,8 +176,37 @@ class XlsxConverter {
     }
 }
 
+class CSVConverter {
+    
+    constructor() {
+        this.csvParser = CSV();    
+    }
+
+    convertCsvToJson(csvPath) {
+        try {
+            return new Promise((resolve, reject) => {
+            this.csvParser
+                .fromFile(csvPath)
+                .then((jsonObj) => {
+                    resolve(jsonObj); // Return the parsed JSON array directly
+                })
+                .catch((err) => {
+                    console.error('Error:', err);
+                    reject(err);
+                });
+            });
+        }
+        catch (error) {
+            console.error("Error reading CSV file:", error);
+            throw error; // Rethrow the error to be handled in the calling function
+        }
+    }
+
+}
+
 // Export class
 module.exports = {
     PdfConverter,
-    XlsxConverter
+    XlsxConverter,
+    CSVConverter
 }

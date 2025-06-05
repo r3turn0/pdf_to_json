@@ -187,4 +187,4 @@ async function program(completed) {
   }
 }
 
-await program(false);
+program(false);

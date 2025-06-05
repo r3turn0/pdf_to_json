@@ -11,9 +11,9 @@
     form-data "^4.0.0"
 
 "@types/node@*", "@types/node@^18.11.18":
-  version "18.19.101"
-  resolved "https://registry.npmjs.org/@types/node/-/node-18.19.101.tgz"
-  integrity sha512-Ykg7fcE3+cOQlLUv2Ds3zil6DVjriGQaSN/kEpl5HQ3DIGM6W0F2n9+GkWV4bRt7KjLymgzNdTnSKCbFUUJ7Kw==
+  version "18.19.103"
+  resolved "https://registry.npmjs.org/@types/node/-/node-18.19.103.tgz"
+  integrity sha512-hHTHp+sEz6SxFsp+SA+Tqrua3AbmlAw+Y//aEwdHrdZkYVRWdvWD3y5uPZ0flYOkgskaFWqZ/YGFm3FaFQ0pRw==
   dependencies:
     undici-types "~5.26.4"
 
@@ -43,6 +43,11 @@ asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.npmjs.org/asynckit/-/asynckit-0.4.0.tgz"
   integrity sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==
+
+bluebird@^3.5.1:
+  version "3.7.2"
+  resolved "https://registry.npmjs.org/bluebird/-/bluebird-3.7.2.tgz"
+  integrity sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg==
 
 call-bind-apply-helpers@^1.0.1, call-bind-apply-helpers@^1.0.2:
   version "1.0.2"
@@ -76,6 +81,15 @@ crc-32@~1.2.0, crc-32@~1.2.1:
   version "1.2.2"
   resolved "https://registry.npmjs.org/crc-32/-/crc-32-1.2.2.tgz"
   integrity sha512-ROmzCKrTnOwybPcJApAA6WBWij23HVfGVNKqqrZpuyZOHqK2CwHSvpGuyt/UNNvaIjEd8X5IFGp4Mh+Ie1IHJQ==
+
+csvtojson@^2.0.10:
+  version "2.0.10"
+  resolved "https://registry.npmjs.org/csvtojson/-/csvtojson-2.0.10.tgz"
+  integrity sha512-lUWFxGKyhraKCW8Qghz6Z0f2l/PqB1W3AO0HKJzGIQ5JRSlR651ekJDiGJbBT4sRNNv5ddnSGVEnsxP9XRCVpQ==
+  dependencies:
+    bluebird "^3.5.1"
+    lodash "^4.17.3"
+    strip-bom "^2.0.0"
 
 deeks@3.1.0:
   version "3.1.0"
@@ -231,6 +245,11 @@ humanize-ms@^1.2.1:
   dependencies:
     ms "^2.0.0"
 
+is-utf8@^0.2.0:
+  version "0.2.1"
+  resolved "https://registry.npmjs.org/is-utf8/-/is-utf8-0.2.1.tgz"
+  integrity sha512-rMYPYvCzsXywIsldgLaSoPlw5PfoB/ssr7hY4pLfcodrA5M/eArza1a9VmTiNIBNMjOGr1Ow9mTyU2o69U6U9Q==
+
 json-2-csv@^5.5.9:
   version "5.5.9"
   resolved "https://registry.npmjs.org/json-2-csv/-/json-2-csv-5.5.9.tgz"
@@ -245,9 +264,14 @@ json-csv@^4.0.18:
   integrity sha512-dwIKUAlMQaojPaUr/0j85RMpi3UU6rqG3rEvTjQI2z1Wx6OvqumYbqEcofR1vnkUB7tBLSYx+aosGEW33wEqrg==
 
 json-to-csv-export@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.npmjs.org/json-to-csv-export/-/json-to-csv-export-3.1.0.tgz"
-  integrity sha512-MT9qhOZUk+SNCq34bH+v3lE9gxvx9NxhIrmrG5qWlG14Q87rqzkU+1hZX6kWjSdvVKASDhpMkTawgnAVSfjqYg==
+  version "3.1.2"
+  resolved "https://registry.npmjs.org/json-to-csv-export/-/json-to-csv-export-3.1.2.tgz"
+  integrity sha512-7YBsJi6Zcho9URT2tv9zlMAikHNtMLUWu3nY2Ca1wysu4GdrllXcu1cJkXOCPZGDOMmVIcjkojoudNk1SOtSNg==
+
+lodash@^4.17.3:
+  version "4.17.21"
+  resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz"
+  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
 math-intrinsics@^1.1.0:
   version "1.1.0"
@@ -284,9 +308,9 @@ node-fetch@^2.6.7:
     whatwg-url "^5.0.0"
 
 openai@^4.100.0:
-  version "4.100.0"
-  resolved "https://registry.npmjs.org/openai/-/openai-4.100.0.tgz"
-  integrity sha512-9soq/wukv3utxcuD7TWFqKdKp0INWdeyhUCvxwrne5KwnxaCp4eHL4GdT/tMFhYolxgNhxFzg5GFwM331Z5CZg==
+  version "4.103.0"
+  resolved "https://registry.npmjs.org/openai/-/openai-4.103.0.tgz"
+  integrity sha512-eWcz9kdurkGOFDtd5ySS5y251H2uBgq9+1a2lTBnjMMzlexJ40Am5t6Mu76SSE87VvitPa0dkIAp75F+dZVC0g==
   dependencies:
     "@types/node" "^18.11.18"
     "@types/node-fetch" "^2.6.4"
@@ -309,6 +333,13 @@ ssf@~0.11.2:
   integrity sha512-+idbmIXoYET47hH+d7dfm2epdOMUDjqcB4648sTZ+t2JwoyBFL/insLfB/racrDmsKB3diwsDA696pZMieAC5g==
   dependencies:
     frac "~1.1.2"
+
+strip-bom@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/strip-bom/-/strip-bom-2.0.0.tgz"
+  integrity sha512-kwrX1y7czp1E69n2ajbG65mIo9dqvJ+8aBQXOGVxqwvNbsXdFM6Lq37dLAY3mknUwru8CfcCbfOLL/gMo+fi3g==
+  dependencies:
+    is-utf8 "^0.2.0"
 
 tr46@~0.0.3:
   version "0.0.3"

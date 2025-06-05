@@ -1,5 +1,6 @@
 const OpenAI = require('openai');
 const fs = require('fs');
+const { resolve } = require('path');
 require('dotenv').config();
 
 class OpenAIClient {
@@ -31,10 +32,12 @@ class OpenAIClient {
 
     // Method to upload a file for fine-tuning, file must be in JSONL format
     uploadTuningFile(filePath) {
+        const openai = this.client;
         return new Promise((resolve, reject) => {
-            this.client.files.create({
+            (async function() {
+            await openai.files.create({
                 file: fs.createReadStream(filePath),
-                purpose: 'fine-tune'
+                purpose: 'fine-tune',
             }).then((response) => {
                 const file_Id = response.id;
                 console.log("File uploaded successfully. File ID:", file_Id);
@@ -43,7 +46,8 @@ class OpenAIClient {
                 console.error("Error uploading file:", error);
                 reject(error);
             });
-        });            
+        })(openai);
+        });                   
     }
 
     retrieveFile(fileId) {
@@ -62,9 +66,15 @@ class OpenAIClient {
         return new Promise((resolve, reject) => {
             this.client.fineTuning.jobs.create(
             { 
-                model: process.env.MODEL || 'gpt-4o', 
-                training_file: fileId 
+                training_file: fileId, 
+                model: process.env.MODEL || 'gpt-4o'
+            }).then((response) => {
+                resolve(response)
+            }).catch((error) => {
+                console.log("Error creating fine-tune job:", error);
+                reject(error);
             });
+        
         });
     }
 
@@ -84,8 +94,8 @@ class OpenAIClient {
         const instructions = o.instructions ? instruct + '\n' + o.instructions : instruct; 
         // Query the database table later for the fields for now hardcode them in the input.
         const i =  `Given the following fields with field types: ['Item Name VARCHAR', 'Vendor Item Code VARCHAR',
-                   'Sales Description VARCHAR', 'Unit of Measure FLOAT', 'Unit/Box NUMERIC', 'Item Color VARCHAR', 'Item Size VARCHAR',
-                   'PCs in a Box NUMERIC', 'SF by PC/SHEET NUMERIC', 'SF By Box NUMERIC', 'Cost FLOAT', 'Group VARCHAR'] and 
+                   'Packaging Information VARCHAR', 'Unit of Measure FLOAT', 'Unit/Box NUMERIC', 'Item Color VARCHAR', 'Item Size VARCHAR',
+                   'PCs in a Box NUMERIC', 'SF by PC/SHEET NUMERIC', 'SF By Box NUMERIC', 'Cost FLOAT', 'Group VARCHAR', 'Finish VARCHAR'] and 
                     given pageNumbers and lineItems (aka the data) associated for each page find the correct values for the fields above.`;
         const input = o.input ? o.input + input : i;
         return new Promise((resolve, reject) => {  
@@ -117,16 +127,17 @@ class OpenAIClient {
                             role: 'user',
                             content: [
                                 {
+                                    //PTM POLISHED, PTM1,	1.00 SF/EA,	SHEET, 1, "CALACATTA, THASSOS , BRASS", 1.00, 33.00, MOSAIC
+                                    // PTM POLISHED, PTM2,	0.90 SF/EA,	SHEET, 1, "THASSOS, NERO MARQUINA", 0.90,	23.40, MOSAIC
+                                    // PTM POLISHED, PTM3,	0.90 SF/EA,	SHEET, 1, "CALACATTA GOLD, THASSOS, NERO MARQUINA , BRASS", 0.90,	29.70, MOSAIC
+                                    // PTM POLISHED, PTM4,	0.90 SF/EA,	SHEET, 1, "ASIAN STATUARY, THELA GREY", 0.90,	24.30, MOSAIC
+                                    // PTM POLISHED, PTM5,	0.90 SF/EA,	SHEET, 1, "CALACATTA GOLD , BRASS", 0.90,	28.80, MOSAIC
+                                    // PTM POLISHED, PTM6,	1.00 SF/EA,	SHEET, 1, "CALACATTA GOLD, NERO MARQUINA , BRASS", 1.00, 30.00, MOSAIC
                                     type: 'input_text',
-                                    text: `Here are some sample values that I am looking for: 
-                                    Item Name, Vendor Item Code, Packaging Information	Unit of Measure, Unit/Box, Item Color, Item Size, PCs in a Box,	SF by PC/SHEET,	SF By Box, Cost, Group, Finish
-                                    PTM POLISHED, PTM1,	1.00 SF/EA,	SHEET, 1, "CALACATTA, THASSOS , BRASS", 1.00, 33.00, MOSAIC
-                                    PTM POLISHED, PTM2,	0.90 SF/EA,	SHEET, 1, "THASSOS, NERO MARQUINA", 0.90,	23.40, MOSAIC
-                                    PTM POLISHED, PTM3,	0.90 SF/EA,	SHEET, 1, "CALACATTA GOLD, THASSOS, NERO MARQUINA , BRASS", 0.90,	29.70, MOSAIC
-                                    PTM POLISHED, PTM4,	0.90 SF/EA,	SHEET, 1, "ASIAN STATUARY, THELA GREY", 0.90,	24.30, MOSAIC
-                                    PTM POLISHED, PTM5,	0.90 SF/EA,	SHEET, 1, "CALACATTA GOLD , BRASS", 0.90,	28.80, MOSAIC
-                                    PTM POLISHED, PTM6,	1.00 SF/EA,	SHEET, 1, "CALACATTA GOLD, NERO MARQUINA , BRASS", 1.00, 30.00, MOSAIC
-                                    Acacia Valley FLoor Tile Plank, 6361P6, 12.78 SF/BOX, SQUARE FOOT, 1, 12.78, 'Ash, Ark, Ridge', 6X36, 12.78, 72.85, 12.78, Acacia Valley, 5.7, TILE, MATTE
+                                    text: `Here are some sample values that I am looking for, note that the values are not complete and you will need to infer the values based on the fields given or leave empty if you cannot find the proper values: 
+                                    Item Name, Vendor Item Code, Packaging Information, Unit of Measure, Unit/Box, Item Color, Item Size, PCs in a Box,	SF by PC/SHEET,	SF By Box, Cost, Group, Finish.
+                                    Pebble Blend A, 1.00 SF/EA, Square Foot, 1, 'SLICED WHITE, TAN, LIGHT GREY', , 12.00, 12.00, 12.00, Pebble,,.
+                                    Acacia Valley Floor Tile Plank, 6361P6, 12.78 SF/BOX, SQUARE FOOT, 1, 12.78, 'Ash, Ark, Ridge', 6X36, 12.78, 72.85, 12.78, Acacia Valley, 5.7, TILE, MATTE.
                                     ACREAGE Floor Tile Plank Matte, PLK848MT, 15.18 SF/BOX, SQUARE FOOT, 1, 15.18, Palomino, 8X48, 25.29, 15.18, 1.66, Tile, MATTE.
                                     I want ALL records (full file) to be returned in the CSV format. Consider this as confirmation.`
                                 }
@@ -144,48 +155,124 @@ class OpenAIClient {
     }
 
     createThread(content) {
-        (async function() {
-            const thread = await this.client.beta.assistants.createThread({
-                messages: [
-                    {
-                        role: 'user',
-                        content: content
-                    },
-                    // {
-                    //     role: 'user',
-                    //     content: content2
-                    // }
-                ]
+        try {
+            return new Promise((resolve, reject)=> {
+                const openai = this.client;
+                (async function() {
+                const thread = await openai.beta.threads.create({
+                    messages: [
+                        {
+                            role: 'user',
+                            content: content
+                        },
+                    ]
+                }).then((response) => {
+                    console.log("Thread created successfully:", response);
+                    return response;
+                }).catch((error)=> {
+                    console.error("Error creating thread:", error);
+                    return reject(error);
+                });
+                if(thread) {
+                    resolve(thread)
+                }
+                })(openai);
             });
-            return thread;
-        })();
+        }
+        catch (error) {
+            console.error("Error in createThread function:", error);
+        }
     }
 
     runThread(threadId, aid, instructions) {
-        (async function() { 
-            const run = await this.client.beta.assistants.createAndPollThread(threadId, {
-                assistant_id: aid,
-                additional_instructions: instructions,
-                tools: [{
-                    type: "file_search",
-                    vector_store_ids: [process.env.VECTORSTOREID],
-                }]
+        try {
+            return new Promise((resolve, reject) => {
+                const openai = this.client;
+                (async function() { 
+                    const run = await openai.beta.threads.runs.createAndPoll(threadId, {
+                        assistant_id: aid,
+                        additional_instructions: instructions,
+                        tools: [{
+                            type: "file_search"
+                        }]
+                    }).then((response) => {
+                        return response;
+                    }).catch((error) => {
+                        console.error("Error running thread:", error);
+                        return reject(error);
+                    });
+                    if(run) {
+                        console.log("Thread run completed successfully:", run);
+                        resolve(run);
+                    }
+                })(openai);
             });
-            return run;
-        })();
+        }
+        catch (error) {
+            console.error("Error in runThread function:", error);
+        }
     }
 
-    getThread(threadId) {
-        (async function() {
-           if (run.status == 'completed') {
-            const messages = await openai.beta.threads.messages.list(threadId);
-            for (const message of messages.getPaginatedItems()) {
-                console.log(message);
-            }
-            return messages;
-        } 
-        })();
+    // // returns message thread ids
+    createMessage(threadId) {
+        try {
+            const openai = this.client
+            return new Promise((resolve, reject) => {
+            (async function() {
+                const msg = openai.beta.threads.messages.create(threadId, {role: 'user', content: "Respond with a proper JSON string of the JSON object text content that the model has created."}).then((response) => {
+                    console.log("Message created successfully:", response);
+                    return response;
+                }).catch((error) => {
+                    console.error("Error creating message:", error);
+                    reject(error);
+                });
+                if(msg) {
+                    resolve(msg);
+                }
+                else {
+                    console.log("Error in createMessage function: No messages found.");
+                }
+            })(openai);
+        });
+        }
+        catch (error) {
+            console.log("Error in getThread function:", error);
+        }
     }
+
+    getMessage(m, threadId) {
+        try {
+            const openai = this.client;
+            const messageId = m.id;
+            const o = {
+                openai: openai,
+                messageId: messageId,
+                threadId: threadId
+            }
+            return new Promise((resolve, reject) => {
+            (async function() {
+                const message = await o.openai.beta.threads.messages.retrieve(o.threadId, o.messageId) .then((response) => {
+                    if(response) {
+                        return response;
+                    }
+                }).catch((error) => {
+                    console.log("Error retrieving message:", error);
+                    reject(error);
+                }); 
+                if(message) {
+                    console.log("Message retrieved:", message)
+                    resolve(message);
+                }
+                else {
+                    console.log("Error in getMessage function: No message found.");
+                }
+            })(o);
+            });
+        }
+        catch(error){
+            console.error("Error in getMessage function:", error);
+        }
+    } 
 }
 
 module.exports = OpenAIClient;
