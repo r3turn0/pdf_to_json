@@ -91,13 +91,13 @@ class OpenAIClient {
         const instruct = `You are a data analyst able to read, analyze and extract data from PDF, Excel and CSV files. 
                           You will be provided with unstructured tabular data and your task is to analyze the data and infer values based on the fields given.
                           Respond only with a CSV table, without any explanation, summary, or commentary. Do not add any introductory or concluding text.`;
-        const instructions = o.instructions ? instruct + '\n' + o.instructions : instruct; 
+        const instructions = o.instructions ? instruct + '\n' + o.instructions : instruct; // Give it an algorithm to follow from index.js
         // Query the database table later for the fields for now hardcode them in the input.
         const i =  `Given the following fields with field types: ['Item Name VARCHAR', 'Vendor Item Code VARCHAR',
                    'Packaging Information VARCHAR', 'Unit of Measure FLOAT', 'Unit/Box NUMERIC', 'Item Color VARCHAR', 'Item Size VARCHAR',
                    'PCs in a Box NUMERIC', 'SF by PC/SHEET NUMERIC', 'SF By Box NUMERIC', 'Cost FLOAT', 'Group VARCHAR', 'Finish VARCHAR'] and 
                     given pageNumbers and lineItems (aka the data) associated for each page find the correct values for the fields above.`;
-        const input = o.input ? o.input + input : i;
+        const input = o.input ? i + '\n' + o.input : i;
         return new Promise((resolve, reject) => {  
             this.client.responses.create({
                 model: model,
@@ -134,12 +134,7 @@ class OpenAIClient {
                                     // PTM POLISHED, PTM5,	0.90 SF/EA,	SHEET, 1, "CALACATTA GOLD , BRASS", 0.90,	28.80, MOSAIC
                                     // PTM POLISHED, PTM6,	1.00 SF/EA,	SHEET, 1, "CALACATTA GOLD, NERO MARQUINA , BRASS", 1.00, 30.00, MOSAIC
                                     type: 'input_text',
-                                    text: `Here are some sample values that I am looking for, note that the values are not complete and you will need to infer the values based on the fields given or leave empty if you cannot find the proper values: 
-                                    Item Name, Vendor Item Code, Packaging Information, Unit of Measure, Unit/Box, Item Color, Item Size, PCs in a Box,	SF by PC/SHEET,	SF By Box, Cost, Group, Finish.
-                                    Pebble Blend A, 1.00 SF/EA, Square Foot, 1, 'SLICED WHITE, TAN, LIGHT GREY', , 12.00, 12.00, 12.00, Pebble,,.
-                                    Acacia Valley Floor Tile Plank, 6361P6, 12.78 SF/BOX, SQUARE FOOT, 1, 12.78, 'Ash, Ark, Ridge', 6X36, 12.78, 72.85, 12.78, Acacia Valley, 5.7, TILE, MATTE.
-                                    ACREAGE Floor Tile Plank Matte, PLK848MT, 15.18 SF/BOX, SQUARE FOOT, 1, 15.18, Palomino, 8X48, 25.29, 15.18, 1.66, Tile, MATTE.
-                                    I want ALL records (full file) to be returned in the CSV format. Consider this as confirmation.`
+                                    text: process.env.EXAMPLES + `\n I want ALL records (full file) to be returned in the CSV format. Consider this as confirmation.`
                                 }
                             ]
                         }
@@ -214,12 +209,22 @@ class OpenAIClient {
     }
 
     // // returns message thread ids
-    createMessage(threadId) {
+    createMessage(threadId, fileId) {
         try {
             const openai = this.client
             return new Promise((resolve, reject) => {
             (async function() {
-                const msg = openai.beta.threads.messages.create(threadId, {role: 'user', content: "Respond with a proper JSON string of the JSON object text content that the model has created."}).then((response) => {
+                const msg = openai.beta.threads.messages.create(threadId, {
+                        role: 'user', 
+                        content: process.env.EXAMPLES,
+                        attachments: [
+                            { 
+                                file_id: fileId, 
+                                tools: [{ type: 'file_search' }] 
+                            },
+                            
+                        ]
+                    }).then((response) => {
                     console.log("Message created successfully:", response);
                     return response;
                 }).catch((error) => {
@@ -251,7 +256,7 @@ class OpenAIClient {
             }
             return new Promise((resolve, reject) => {
             (async function() {
-                const message = await o.openai.beta.threads.messages.retrieve(o.threadId, o.messageId) .then((response) => {
+                const message = await o.openai.beta.threads.messages.retrieve(o.threadId, o.messageId).then((response) => {
                     if(response) {
                         return response;
                     }

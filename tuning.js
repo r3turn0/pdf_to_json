@@ -2,6 +2,7 @@ const path = require('path');
 const openAiClient = require('./openai.js')
 const fs = require("fs");
 const { CSVConverter } = require('./convert.js');
+const { stringify } = require('querystring');
 require('dotenv').config();
 
 async function concatCSVs() {
@@ -20,13 +21,13 @@ async function concatCSVs() {
     return json;
 }
 
-// const content = `Find the following values for the fields provided in the files found in the Elite vector store: 
-// Item Name, Vendor Item Code, Packaging Information Unit of Measure, Unit/Box, Item Color, Item Size, PCs in a Box, SF by PC/SHEET, SF By Box, Cost, Group, Finish.
-// Here are some sample values that I am looking for: ` + tuningFile;
+const content = `Find the following values for the fields provided in the files found in the Elite vector store. The fields are: 
+Item Name, Vendor Item Code, Packaging Information Unit of Measure, Unit/Box, Item Color, Item Size, PCs in a Box, SF by PC/SHEET, SF By Box, Cost, Group, Finish.\n`
++ process.env.EXAMPLES;
 
-// const instructions = `You are a data analyst able to read, analyze and extract data from PDF, Excel and CSV files.
-// Your task is to analyze the data and infer values based on the fields given. Respond only with a JSON object for fine tuning the model, without any explanation, summary, or commentary. 
-// Do not add any introductory or concluding text.`
+const instructions = `You are a data analyst able to read, analyze and extract data from PDF, Excel and CSV files.
+Your task is to analyze the data and infer values based on the fields given. Respond only with a JSON object for fine tuning the model, without any explanation, summary, or commentary. 
+Do not add any introductory or concluding text.`
 
 const client = new openAiClient(process.env.APIKEY);
 
@@ -72,22 +73,24 @@ async function run(content, instructions) {
         const runThreadResponse = await runAIThread(threadResponse.id, instructions);
         console.log("Run thread response:", runThreadResponse);
         if(runThreadResponse.status === 'completed') {
+            const jsonFile = await main();
+            console.log("JSON file created successfully:", jsonFile);
             // Create a message in the thread
-            const message = await client.createMessage(runThreadResponse.thread_id);
+            const message = await client.createMessage(runThreadResponse.thread_id, jsonFile.id);
             if(message) {
                 console.log("Message:", message);
                 console.log("Message content:", message.content[0].text);
                 const msg = await client.getMessage(message, runThreadResponse.thread_id);
-                if(msg) {
-                    console.log("Message retrieved successfully:", msg.content[0].text);
-                    const tfile = fs.writeFileSync('./tuning/tuningFile.json', JSON.stringify(msg, null, 2));
-                    console.log("Tuning file created successfully:", tfile);
-                    const fileId = await client.uploadTuningFile(tfile);
-                    const jsonFile = await client.retrieveFile(fileId.id); 
-                    console.log("File retrieved successfully:", jsonFile);
-                    const fineTuneResponse = await client.createFineTuneJob(jsonFile);
-                    console.log('Fine-tuning job created successfully:', fineTuneResponse);
-                }
+                // if(msg) {
+                //     console.log("Message retrieved successfully:", msg.content[0].text);
+                //     const tfile = fs.writeFileSync('./tuning/tuningFile.json', JSON.stringify(msg, null, 2));
+                //     console.log("Tuning file created successfully:", tfile);
+                //     const fileId = await client.uploadTuningFile(tfile);
+                //     const jsonFile = await client.retrieveFile(fileId.id); 
+                //     console.log("File retrieved successfully:", jsonFile);
+                //     const fineTuneResponse = await client.createFineTuneJob(jsonFile);
+                //     console.log('Fine-tuning job created successfully:', fineTuneResponse);
+                // }
             }
         }
     }
@@ -96,21 +99,48 @@ async function run(content, instructions) {
     }
 }
 
-// run(content, instructions).then(() => {
-//     console.log("Fine-tuning process completed successfully.");
-// }).catch((error) => {
-//     console.error("Error during fine-tuning process:", error);
-// });
-
 async function main() {
     const json = await concatCSVs();
-    const jsonlData = json.map(item => JSON.stringify(item)).join('\n');
+    
+    fs.writeFileSync('./tuning/tuning.json', JSON.stringify(json), 'utf8');
+    let jsonDetails = {
+        //type: 'message',
+        role: 'user',
+        content: ''
+    }
+    let jsonlData = json.map(function(item){
+        const o = {
+            messages: [
+                jsonDetails
+            ]
+        }
+        jsonDetails.content = JSON.stringify(item);
+        return JSON.stringify(o);
+    })//.join('\n');
+    // get the last element
+    let j = JSON.parse(jsonlData[jsonlData.length - 1]);
+    console.log("JSONL data last element", j);
+    j = j.messages[0].role = 'assistant';
+    j = JSON.stringify(j);
+    jsonlData[jsonlData.length-1] = j;
+    jsonlData.push(j);
+    jsonlData = jsonlData.join('\n');
     fs.writeFileSync('./tuning/tuning.jsonl', jsonlData, 'utf8');
     const fileId = await client.uploadTuningFile('./tuning/tuning.jsonl');
+    const fileId2 = await client.uploadTuningFile('./tuning/tuning.json');
     const jsonFile = await client.retrieveFile(fileId); 
+    const jsonFile2 = await client.retrieveFile(fileId2);
     console.log("File retrieved successfully:", jsonFile);
+    console.log("File2 retrieved successfully:", jsonFile2);
     const fineTuneResponse = await client.createFineTuneJob(jsonFile.id);
     console.log('Fine-tuning job created successfully:', fineTuneResponse);
+    return jsonFile2;
 }
 
-main();
+//main();
+
+run(content, instructions).then(() => {
+    console.log("Fine-tuning process completed successfully.");
+}).catch((error) => {
+    console.error("Error during fine-tuning process:", error);
+});
