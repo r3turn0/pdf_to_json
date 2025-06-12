@@ -1,0 +1,113 @@
+Item Name,Vendor Item Code,Packaging Information,Unit of Measure,Unit/Box,Item Color,Item Size,PCs in a Box,SF by PC/SHEET,SF By Box,Cost,Group,Finish
+D_SEGNI Floor Tile 8X8 Square Matte,881P,10.32 SF/CTN,SF,10.32,"Chalk, Sand, Smoke, Mud, Denim, Shadow, Midnight",8X8,,,"$5.09",D_SEGNI,Matte
+D_SEGNI Floor Tile Deco 8X8 Birdseye Matte,88BIRD1P,24.00 PC/CTN,PC,24.00,Birdseye,8X8,,,"$3.22",D_SEGNI,Matte
+D_SEGNI Floor Tile Deco 8X8 Double Diamond Matte,88DIAMOND1P,24.00 PC/CTN,PC,24.00,Double Diamond,8X8,,,"$3.22",D_SEGNI,Matte
+D_SEGNI Floor Tile Deco 8X8 Kaleido Matte,88KALEIDO1P,24.00 PC/CTN,PC,24.00,Kaleido,8X8,,,"$3.22",D_SEGNI,Matte
+D_SEGNI Floor Tile Deco 8X8 Parisan Matte,88PARIS1P,24.00 PC/CTN,PC,24.00,Parisan,8X8,,,"$3.22",D_SEGNI,Matte
+D_SEGNI Floor Tile Deco 8X8 Peak Matte,88PEAK1P,24.00 PC/CTN,PC,24.00,Peak,8X8,,,"$3.22",D_SEGNI,Matte
+D_SEGNI Floor Tile Deco 8X8 Plaid Matte,88PLAID1P,24.00 PC/CTN,PC,24.00,Plaid,8X8,,,"$3.22",D_SEGNI,Matte
+D_SEGNI Floor Tile Deco 8X8 Starlit Matte,88STAR1P,24.00 PC/CTN,PC,24.00,Starlit,8X8,,,"$3.22",D_SEGNI,Matte
+D_SEGNI Floor Tile Deco 8X8 Stella Matte,88STELLA1P,24.00 PC/CTN,PC,24.00,Stella,8X8,,,"$3.22",D_SEGNI,Matte
+D_SEGNI COLOR Floor Tile 8X8 Square Matte,881P,10.32 SF/CTN,SF,10.32,Mustard,8X8,,,"$5.19",D_SEGNI COLOR,Matte
+D_SEGNI COLOR Floor Tile Deco 8X8 Clover Matte,881P,24.00 PC/CTN,PC,24.00,Clover,8X8,,,"$3.03",D_SEGNI COLOR,Matte
+D_SEGNI COLOR Floor Tile Deco 8X8 Honeycomb Matte,881P,24.00 PC/CTN,PC,24.00,Honeycomb,8X8,,,"$3.03",D_SEGNI COLOR,Matte
+D_SEGNI COLOR Floor Tile Deco 8X8 Lily Matte,881P,24.00 PC/CTN,PC,24.00,Lily,8X8,,,"$3.03",D_SEGNI COLOR,Matte
+D_SEGNI COLOR Floor Tile Deco 8X8 Monarch Matte,881P,24.00 PC/CTN,PC,24.00,Monarch,8X8,,,"$3.03",D_SEGNI COLOR,Matte
+D_SEGNI TERRAZZO Floor Tile 8X8 Square Matte,881P,10.32 SF/CTN,SF,10.32,White,8X8,,,"$5.16",D_SEGNI TERRAZZO,Matte
+D_SEGNI TERRAZZO Floor Tile Deco 8X8 Chalet Matte,881P,24.00 PC/CTN,PC,24.00,Chalet,8X8,,,"$3.29",D_SEGNI TERRAZZO,Matte
+D_SEGNI TERRAZZO Floor Tile Deco 8X8 Croix Matte,881P,24.00 PC/CTN,PC,24.00,Croix,8X8,,,"$3.29",D_SEGNI TERRAZZO,Matte
+D_SEGNI TERRAZZO Floor Tile Deco 8X8 Fleur-De-Lis Matte,881P,24.00 PC/CTN,PC,24.00,Fleur-De-Lis,8X8,,,"$3.29",D_SEGNI TERRAZZO,Matte
+D_SEGNI TERRAZZO Floor Tile Deco 8X8 Fresco Matte,881P,24.00 PC/CTN,PC,24.00,Fresco,8X8,,,"$3.29",D_SEGNI TERRAZZO,Matte
+EDGEWOOD Floor Tile 6X24 Plank Matte,6241PR,15.00 SF/CTN,SF,15.00,Stone,6X24,,,"$1.88",EDGEWOOD,Matte
+EDGEWOOD Floor Tile 6X24 Plank Matte,PLK624MTJ1,16.10 SF/CTN,SF,16.10,Steel,6X24,,,"$1.88",EDGEWOOD,Matte
+, , , , , , , , , , , ,
+ELYSIAN Floor Tile 12X24 Rectangle Matte,RCT1224MTJ1,17.60 SF/CTN,SF,17.60,Gentle Breeze,12X24,,,"$1.42",ELYSIAN,Matte
+ELYSIAN Floor Tile Trim 3X12 Bullnose Matte,P43C91P1,30.00 PC/CTN,PC,30.00,Gentle Breeze,3X12,,,"$4.01",ELYSIAN,Matte
+FONDAMENTA Floor Tile 12X24 Rectangle Matte,RCT1224MT,15.50 SF/CTN,SF,15.50,Ash Light,12X24,,,"$5.16",FONDAMENTA,Matte
+FONDAMENTA Floor Tile 24X24 Square Matte,SQU2424MT,11.60 SF/CTN,SF,11.60,Light Grey,24X24,,,"$5.93",FONDAMENTA,Matte
+FONDAMENTA Floor Tile 24X48 Rectangle Matte,RCT2448MT,15.44 SF/CTN,SF,15.44,Dark Grey,24X48,,,"$6.15",FONDAMENTA,Matte
+FORGEHAUS Floor Tile 12X24 Rectangle Matte,RCT1224MT,17.02 SF/CTN,SF,17.02,Beam,12X24,,,"$4.72",FORGEHAUS,Matte
+FORGEHAUS Floor Tile 24X24 Square Matte,SQU2424MT,15.21 SF/CTN,SF,15.21,Beam,24X24,,,"$4.72",FORGEHAUS,Matte
+FORGEHAUS Floor Tile 24X48 Rectangle Matte,RCT2448MT,15.26 SF/CTN,SF,15.26,Beam,24X48,,,"$5.25",FORGEHAUS,Matte
+FORGEHAUS Floor Tile Trim 1X6 Cove BC Matte,PC36C9MT,6.00 PC/CTN,PC,6.00,Beam,1X6,,,"$9.45",FORGEHAUS,Matte
+FORGEHAUS Floor Tile Trim 3X24 Bullnose Matte,P43F9MT,10.00 PC/CTN,PC,10.00,Beam,3X24,,,"$6.82",FORGEHAUS,Matte
+FORGEHAUS Floor Tile Trim 6X12 Cove Base Matte,P36C9MT,12.00 PC/CTN,PC,12.00,Beam,6X12,,,"$9.45",FORGEHAUS,Matte
+FORGEHAUS Mosaic Tile 12X11 Sheet 2X4 Trapezoid Matte,TPZ24MSMT,9.50 SF/CTN,SF,9.50,Beam,2X4,,,"$14.70",FORGEHAUS,Matte
+FORGEHAUS Wall Tile 12X24 Rectangle Ripple Matte,1224RPLMT,15.56 SF/CTN,SF,15.56,Beam,12X24,,,"$6.38",FORGEHAUS,Matte
+FORGEHAUS Wall Tile Trim 1/2X12 Jolly Matte,S1/212JMT,6.00 CD/CTN,CD,6.00,Beam,1/2X12,,,"$11.38",FORGEHAUS,Matte
+GEOMETAL Mosaic Tile 11X12 Sheet 3X3 Hexagon Satin,33HEXMS1P,6.00 PC/CTN,PC,6.00,"Champagne Gold, Bronze, Nickel, Gunmetal",3X3,,,"$50.10",GEOMETAL,Satin
+GEOMETAL Mosaic Tile 12X14 Sheet 2X5 Harlequin Satin,25HARMS1P,6.00 PC/CTN,PC,6.00,"Champagne Gold, Bronze, Nickel, Gunmetal",2X5,,,"$50.20",GEOMETAL,Satin
+GEOMETAL Wall Tile Deco 6X6 Floret Satin,66FLOR1P,48.00 PC/CTN,PC,48.00,"Champagne Gold, Bronze, Nickel, Gunmetal",6X6,,,"$14.15",GEOMETAL,Satin
+GEOMETAL Wall Tile Deco 6X6 Geometric Satin,66GEOM1P,48.00 PC/CTN,PC,48.00,"Champagne Gold, Bronze, Nickel, Gunmetal",6X6,,,"$14.51",GEOMETAL,Satin
+GEOMETAL Wall Tile Deco 6X6 Ornamental Satin,66ORNA1P,48.00 PC/CTN,PC,48.00,"Champagne Gold, Bronze, Nickel, Gunmetal",6X6,,,"$15.58",GEOMETAL,Satin
+GEOMETAL Wall Tile Trim 1/2X12 Diamond Liner Satin,DIA1/2121P,24.00 PC/CTN,PC,24.00,"Champagne Gold, Bronze, Nickel, Gunmetal",1/2X12,,,"$5.12",GEOMETAL,Satin
+GEOMETAL Wall Tile Trim 1/2X12 Jolly Satin,S1/212J1P,192.00 PC/CTN,PC,192.00,"Champagne Gold, Bronze, Nickel, Gunmetal",1/2X12,,,"$5.64",GEOMETAL,Satin
+GEOMETAL Wall Tile Trim 1/2X12 Square Liner Satin,SQU1/2121P,24.00 PC/CTN,PC,24.00,"Champagne Gold, Bronze, Nickel, Gunmetal",1/2X12,,,"$5.07",GEOMETAL,Satin
+HAWTHORNE Wall Tile 4X12 Rectangle Bevel Glossy,412MODB1P2,7.98 SF/CTN,SF,7.98,Refined White,4X12,,,"$3.68",HAWTHORNE,Glossy
+HAWTHORNE Wall Tile 4X12 Rectangle Glossy,412MOD1P2,10.64 SF/CTN,SF,10.64,Refined White,4X12,,,"$3.36",HAWTHORNE,Glossy
+HAWTHORNE Wall Tile 8X24 Rectangle Bevel Glossy,824BEV1P2,13.30 SF/CTN,SF,13.30,Refined White,8X24,,,"$4.47",HAWTHORNE,Glossy
+HAWTHORNE Wall Tile 8X24 Rectangle Glossy,8241P2,13.30 SF/CTN,SF,13.30,Refined White,8X24,,,"$3.83",HAWTHORNE,Glossy
+HAWTHORNE Wall Tile 10X14 Rectangle Bevel Glossy,1014BEV1P2,12.38 SF/CTN,SF,12.38,Refined White,10X14,,,"$3.35",HAWTHORNE,Glossy
+HAWTHORNE Wall Tile 10X14 Rectangle Glossy,10141P2,14.25 SF/CTN,SF,14.25,Refined White,10X14,,,"$2.20",HAWTHORNE,Glossy
+HAWTHORNE Wall Tile Trim 1/2X12 Jolly Glossy,S1/212J1P2,192.00 PC/CTN,PC,192.00,Refined White,1/2X12,,,"$6.84",HAWTHORNE,Glossy
+HIGH RIDGE Floor Tile 6X36 Plank Matte,6361PR,13.05 SF/CTN,SF,13.05,Gray,6X36,,,"$1.46",HIGH RIDGE,Matte
+HISTORIA Floor Tile 12X24 Rectangle Light Polished,RCT1224LP,17.02 SF/CTN,SF,17.02,Heirloom White,12X24,,,"$3.61",HISTORIA,Light Polished
+HISTORIA Floor Tile 24X24 Square Light Polished,24241LK,15.20 SF/CTN,SF,15.20,Heirloom White,24X24,,,"$3.61",HISTORIA,Light Polished
+HISTORIA Floor Tile 24X48 Rectangle Light Polished,24481LK,15.26 SF/CTN,SF,15.26,Heirloom White,24X48,,,"$4.55",HISTORIA,Light Polished
+HISTORIA Floor Tile Deco 4X8 Half Hex Light Polished,48DECO1L2,3.56 SF/CTN,SF,3.56,Heirloom White,4X8,,,"$12.39",HISTORIA,Light Polished
+HISTORIA Floor Tile Trim 3X24 Bullnose Light Polished,P43F91LK,10.00 PC/CTN,PC,10.00,Heirloom White,3X24,,,"$6.17",HISTORIA,Light Polished
+ILLUSIONIST Floor Tile 12X24 Rectangle Matte,RCT1224MT,17.02 SF/CTN,SF,17.02,Lumen,12X24,,,"$4.18",ILLUSIONIST,Matte
+ILLUSIONIST Floor Tile 24X24 Square Matte,SQU2424MT,15.21 SF/CTN,SF,15.21,Lumen,24X24,,,"$4.18",ILLUSIONIST,Matte
+ILLUSIONIST Floor Tile 24X48 Rectangle Matte,RCT2448MT,15.26 SF/CTN,SF,15.26,Lumen,24X48,,,"$4.77",ILLUSIONIST,Matte
+ILLUSIONIST Floor Tile Trim 3X24 Bullnose Matte,P43F9MT,10.00 PC/CTN,PC,10.00,Lumen,3X24,,,"$8.39",ILLUSIONIST,Matte
+ILLUSIONIST Mosaic Tile 12X12 Sheet 3X3 Straight Joint Matte,STJ33MSMT,7.00 SF/CTN,SF,7.00,Lumen,3X3,,,"$11.74",ILLUSIONIST,Matte
+ILLUSIONIST Mosaic Tile 12X24 Sheet 1X24 Stacked Matte,STK124MSMT,7.56 SF/CTN,SF,7.56,Mirage,1X24,,,"$12.16",ILLUSIONIST,Matte
+INYO Floor Tile 8 Hexagon Microban Satin,HEX8MBST,9.37 SF/CTN,SF,9.37,Crema,8,,,"$4.21",INYO,Microban Satin
+INYO Floor Tile 2X8 Rectangle Microban Satin,RCT28MBST,4.00 SF/CTN,SF,4.00,Crema,2X8,,,"$5.43",INYO,Microban Satin
+INYO Mosaic Tile 12X10 Sheet 1X6 Straight Joint Microban Satin,STJ16MBMSST,8.30 SF/CTN,SF,8.30,Crema,1X6,,,"$8.36",INYO,Microban Satin
+INYO Mosaic Tile 13X11 Penny Rounds Microban Matte,PNYRDMBMSMT,10.60 SF/CTN,SF,10.60,Crema,Penny Rounds,,,"$8.36",INYO,Microban Matte
+KNOXWOOD Floor Tile 6X24 Plank Matte,624S1PR,14.53 SF/CTN,SF,14.53,Ginger,6X24,,,"$1.63",KNOXWOOD,Matte
+KNOXWOOD Floor Tile 6X24 Plank Matte,PLK624MTJ1,16.10 SF/CTN,SF,16.10,Caraway,6X24,,,"$1.63",KNOXWOOD,Matte
+LOUNGE14 Floor Tile 12X24 Rectangle Decorative Inlay Matte,1224A1PF,17.37 SF/CTN,SF,17.37,Cosmopolitan,12X24,,,"$3.76",LOUNGE14,Matte
+LOUNGE14 Floor Tile 12X24 Rectangle Matte,1224A1PF,17.37 SF/CTN,SF,17.37,Cosmopolitan,12X24,,,"$3.05",LOUNGE14,Matte
+LOUNGE14 Floor Tile Trim 1X6 Cove Base Outcorner Matte,SC36C9T1P2,6.00 PC/CTN,PC,6.00,Spritzer,1X6,,,"$9.66",LOUNGE14,Matte
+LOUNGE14 Floor Tile Trim 3X24 Bullnose Matte,324A1P1,15.00 PC/CTN,PC,15.00,Martini,3X24,,,"$9.62",LOUNGE14,Matte
+LOUNGE14 Floor Tile Trim 6X12 Cove Base Matte,S36C9T1P2,12.00 PC/CTN,PC,12.00,Sidecar,6X12,,,"$9.77",LOUNGE14,Matte
+LUMINESCENCE Mosaic Tile 9X12 Sheet 3X4 Straight Joint Glass,34MS1P,7.60 SF/CTN,SF,7.60,Champagne,3X4,,,"$25.97",LUMINESCENCE,Glass
+MARBLE OBSESSION Floor Tile 12X24 Rectangle Matte,1224A1PF,16.83 SF/CTN,SF,16.83,Arabescato,12X24,,,"$2.30",MARBLE OBSESSION,Matte
+MARBLE OBSESSION Floor Tile 12X24 Rectangle Polished,1224A1LF,16.83 SF/CTN,SF,16.83,Arabescato,12X24,,,"$2.40",MARBLE OBSESSION,Polished
+MARBLE OBSESSION Floor Tile 24X24 Square Matte,24241PF,15.20 SF/CTN,SF,15.20,Arabescato,24X24,,,"$3.33",MARBLE OBSESSION,Matte
+MARBLE OBSESSION Floor Tile 24X24 Square Polished,24241LF,15.20 SF/CTN,SF,15.20,Arabescato,24X24,,,"$3.72",MARBLE OBSESSION,Polished
+MARBLE OBSESSION Floor Tile Trim 3X24 Bullnose Matte,P43F91P1,10.00 PC/CTN,PC,10.00,Arabescato,3X24,,,"$8.09",MARBLE OBSESSION,Matte
+MARBLE OBSESSION Floor Tile Trim 3X24 Bullnose Polished,P43F91L1,10.00 PC/CTN,PC,10.00,Arabescato,3X24,,,"$9.40",MARBLE OBSESSION,Polished
+MARBLE OBSESSION Mosaic Tile 11X12 Sheet 2X2 Straight Joint Matte,22MS1P2,10.00 SF/CTN,SF,10.00,Arabescato,2X2,,,"$5.85",MARBLE OBSESSION,Matte
+MARBLE OBSESSION Mosaic Tile 11X12 Sheet 2X5 Picket Satin,25PICKMS1P2,8.76 SF/CTN,SF,8.76,Arabescato,2X5,,,"$6.25",MARBLE OBSESSION,Satin
+MARBLE OBSESSION Wall Tile 6 Arabesque Matte,6ARAB1P2,10.80 SF/CTN,SF,10.80,Arabescato,6,,,"$6.00",MARBLE OBSESSION,Matte
+MARBLE OBSESSION Wall Tile 8 Hexagon Matte,8HEX1P2,9.37 SF/CTN,SF,9.37,Arabescato,8,,,"$5.17",MARBLE OBSESSION,Matte
+MARBLE OBSESSION Wall Tile Trim 1/2X12 Jolly Matte,S1/212J1P2,6.00 CD/CTN,CD,6.00,Arabescato,1/2X12,,,"$11.27",MARBLE OBSESSION,Matte
+MATERIKA Wall Tile 16X48 Rectangle Linear Textured,1648LINR1P,25.40 SF/CTN,SF,25.40,Off White,16X48,,,"$9.06",MATERIKA,Textured
+MATERIKA Wall Tile 16X48 Rectangle Matte,16481P,30.48 SF/CTN,SF,30.48,Off White,16X48,,,"$9.18",MATERIKA,Matte
+MATERIKA Wall Tile 16X48 Rectangle Wave Textured,1648WAVE1P,25.40 SF/CTN,SF,25.40,Off White,16X48,,,"$9.37",MATERIKA,Textured
+MERCATO Floor Tile 8X36 Plank Matte,PLK836MT,19.60 SF/CTN,SF,19.60,Bianco,8X36,,,"$1.43",MERCATO,Matte
+MERCATO Wall Tile 8X36 Plank Matte,PLK836MT,19.60 SF/CTN,SF,19.60,Bianco,8X36,,,"$1.43",MERCATO,Matte
+MERONA Floor Tile 8X40 Plank Matte,8401PR,10.75 SF/CTN,SF,10.75,White,8X40,,,"$2.09",MERONA,Matte
+MIDDLETON SQUARE Wall Tile 4X12 Rectangle Glossy,412MODA1P2,10.64 SF/CTN,SF,10.64,Oxford White,4X12,,,"$5.23",MIDDLETON SQUARE,Glossy
+MIDDLETON SQUARE Wall Tile Trim 4X12 Bullnose 12" Side Glossy,S44C9MA1P2,28.00 PC/CTN,PC,28.00,Oxford White,4X12,,,"$6.69",MIDDLETON SQUARE,Glossy
+MIDPARK MOSAICS Mosaic Tile 12X12 Sheet 1 Trapezoid Random Matte,1RANDMS1P,10.30 SF/CTN,SF,10.30,Cloud,1,,,"$16.89",MIDPARK MOSAICS,Matte
+MIDPARK MOSAICS Mosaic Tile 12X14 Sheet 3 Rectangle Random Matte,3RANDMS1P,9.80 SF/CTN,SF,9.80,Cloud,3,,,"$15.07",MIDPARK MOSAICS,Matte
+MIDPARK MOSAICS Mosaic Tile 14X14 Sheet 2 Square Random Matte,2RANDMS1P,11.10 SF/CTN,SF,11.10,Cloud,2,,,"$15.46",MIDPARK MOSAICS,Matte
+MODERN FORMATION Floor Tile 12X24 Rectangle Light Polished,RCT1224LP,17.02 SF/CTN,SF,17.02,Peak White,12X24,,,"$3.46",MODERN FORMATION,Light Polished
+MODERN FORMATION Floor Tile 12X24 Rectangle Matte,RCT1224MT,17.02 SF/CTN,SF,17.02,Peak White,12X24,,,"$3.29",MODERN FORMATION,Matte
+MODERN FORMATION Floor Tile 12X24 Rectangle Matte,RCT1224XTMT,17.02 SF/CTN,SF,17.02,Peak White,12X24,,,"$3.29",MODERN FORMATION,Matte
+MODERN FORMATION Floor Tile 12X24 Rectangle Stepwise Textured,RCT1224XTTX,17.02 SF/CTN,SF,17.02,Peak White,12X24,,,"$4.69",MODERN FORMATION,Textured
+MODERN FORMATION Floor Tile 24X24 Square Light Polished,24241LK,15.20 SF/CTN,SF,15.20,Overland Beige,24X24,,,"$4.46",MODERN FORMATION,Light Polished
+MODERN FORMATION Floor Tile 24X24 Square Matte,24241PK,15.20 SF/CTN,SF,15.20,Overland Beige,24X24,,,"$4.05",MODERN FORMATION,Matte
+MODERN FORMATION Floor Tile 24X48 Rectangle Light Polished,24481LK,15.26 SF/CTN,SF,15.26,Peak White,24X48,,,"$3.35",MODERN FORMATION,Light Polished
+MODERN FORMATION Floor Tile 24X48 Rectangle Matte,24481PK,15.26 SF/CTN,SF,15.26,Peak White,24X48,,,"$3.30",MODERN FORMATION,Matte
+MODERN FORMATION Floor Tile Trim 1X6 Cove Base Outcorner Matte,PC36C9T1P2,6.00 PC/CTN,PC,6.00,Overland Beige,1X6,,,"$9.24",MODERN FORMATION,Matte
+MODERN FORMATION Floor Tile Trim 3X24 Bullnose Light Polished,P43F91L1,10.00 PC/CTN,PC,10.00,Peak White,3X24,,,"$11.34",MODERN FORMATION,Light Polished
+MODERN FORMATION Floor Tile Trim 3X24 Bullnose Matte,P43F91P1,10.00 PC/CTN,PC,10.00,Peak White,3X24,,,"$10.42",MODERN FORMATION,Matte
+MODERN FORMATION Floor Tile Trim 6X12 Cove Base Matte,P36C9T1P2,12.00 PC/CTN,PC,12.00,Overland Beige,6X12,,,"$9.35",MODERN FORMATION,Matte
+MODERN FORMATION Mosaic Tile 12X12 Sheet 2X2 Straight Joint Matte,22MS1P1,10.00 SF/CTN,SF,10.00,Peak White,2X2,,,"$11.46",MODERN FORMATION,Matte
+MODERN FORMATION Mosaic Tile 12X13 Sheet Chevron Matte,CHEVRMS1P2,9.30 SF/CTN,SF,9.30,Peak White,Chevron,,,"$23.86",MODERN FORMATION,Matte
+, , , , , , , , , , , ,

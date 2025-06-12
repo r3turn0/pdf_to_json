@@ -7,11 +7,33 @@ require('dotenv').config();
 
 async function concatCSVs() {
     let tuningFile = '';
-    const files = fs.readdirSync('./tuning');
+    const files = fs.readdirSync('./test');
     const csvFiles = files.filter(file => file.endsWith('.csv'));
+    if (csvFiles.length === 0) {
+        throw new Error("No CSV files found in the './tuning' directory.");
+    }
+    let isFirstFile = true;
     csvFiles.forEach(file => {
-        tuningFile += fs.readFileSync(path.join('./tuning', file), 'utf8') + '\n';
+        const fileContent = fs.readFileSync(path.join('./test', file), 'utf8');
+        const lines = fileContent.split('\n');
+        // Helper to filter out empty, '...', and lines with only commas
+        const isValidLine = line => {
+            const trimmed = line.trim();
+            if (trimmed === '' || trimmed === '...') return false;
+            // Remove all commas and spaces, if nothing left, it's only commas
+            if (trimmed.replace(/[, ]/g, '') === '') return false;
+            return true;
+        };
+        if (isFirstFile) {
+            const cleanedLines = lines.filter(isValidLine);
+            tuningFile += cleanedLines.join('\n') + '\n';
+            isFirstFile = false;
+        } else {
+            const dataLines = lines.slice(1).filter(isValidLine);
+            tuningFile += dataLines.join('\n') + '\n';
+        }
     });
+    console.log("Concatenated CSV files successfully.", tuningFile);
     const csvFilePath = './tuning/tuning.csv';
     fs.writeFileSync(csvFilePath, tuningFile, 'utf8');
     console.log("CSV file created successfully:", csvFilePath);
@@ -22,7 +44,8 @@ async function concatCSVs() {
 }
 
 const content = `Find the following values for the fields provided in the files found in the Elite vector store. The fields are: 
-Item Name, Vendor Item Code, Packaging Information Unit of Measure, Unit/Box, Item Color, Item Size, PCs in a Box, SF by PC/SHEET, SF By Box, Cost, Group, Finish.\n`
+Item Name, Vendor Item Code, Packaging Information Unit of Measure, Unit/Box, Item Color, Item Size, PCs in a Box, SF by PC/SHEET, SF By Box, Cost, Group, Finish.\n
+For the Item Name concatenate Item Name, Item Size and Item Color together.\n`
 + process.env.EXAMPLES;
 
 const instructions = `You are a data analyst able to read, analyze and extract data from PDF, Excel and CSV files.
@@ -66,66 +89,31 @@ async function runAIThread(threadId, instructions) {
     }
 }
 
-async function run(content, instructions) {
-    try {
-        const threadResponse = await createAIThread(content);
-        // runThreadResponse return a json object with thread_id
-        const runThreadResponse = await runAIThread(threadResponse.id, instructions);
-        console.log("Run thread response:", runThreadResponse);
-        if(runThreadResponse.status === 'completed') {
-            const jsonFile = await main();
-            console.log("JSON file created successfully:", jsonFile);
-            // Create a message in the thread
-            const message = await client.createMessage(runThreadResponse.thread_id, jsonFile.id);
-            if(message) {
-                console.log("Message:", message);
-                console.log("Message content:", message.content[0].text);
-                const msg = await client.getMessage(message, runThreadResponse.thread_id);
-                // if(msg) {
-                //     console.log("Message retrieved successfully:", msg.content[0].text);
-                //     const tfile = fs.writeFileSync('./tuning/tuningFile.json', JSON.stringify(msg, null, 2));
-                //     console.log("Tuning file created successfully:", tfile);
-                //     const fileId = await client.uploadTuningFile(tfile);
-                //     const jsonFile = await client.retrieveFile(fileId.id); 
-                //     console.log("File retrieved successfully:", jsonFile);
-                //     const fineTuneResponse = await client.createFineTuneJob(jsonFile);
-                //     console.log('Fine-tuning job created successfully:', fineTuneResponse);
-                // }
-            }
-        }
-    }
-    catch (error) {
-        console.error("Error in run function:", error);
-    }
-}
-
 async function main() {
     const json = await concatCSVs();
-    
     fs.writeFileSync('./tuning/tuning.json', JSON.stringify(json), 'utf8');
-    let jsonDetails = {
-        //type: 'message',
-        role: 'user',
-        content: ''
-    }
-    let jsonlData = json.map(function(item){
+    let jsonl = json.map(function(item){
         const o = {
             messages: [
-                jsonDetails
+                {
+                    role: 'user',
+                    content: instructions
+                },
+                {
+                    role: 'assistant',
+                    content: JSON.stringify(item, null, 2)
+                    .replaceAll('Sales Description'.toLowerCase(), 'Packaging Information')
+                    .replaceAll('SF'.toLowerCase(), 'Square Foot')
+                    .replaceAll('SHT'.toLowerCase(), 'Sheet')
+                    .replaceAll('EA'.toLowerCase(), 'Each')
+                    .replaceAll('BX'.toLowerCase(), 'Box')
+                    .replaceAll('PC'.toLowerCase(), 'Piece')
+                },
             ]
         }
-        jsonDetails.content = JSON.stringify(item);
         return JSON.stringify(o);
-    })//.join('\n');
-    // get the last element
-    let j = JSON.parse(jsonlData[jsonlData.length - 1]);
-    console.log("JSONL data last element", j);
-    j = j.messages[0].role = 'assistant';
-    j = JSON.stringify(j);
-    jsonlData[jsonlData.length-1] = j;
-    jsonlData.push(j);
-    jsonlData = jsonlData.join('\n');
-    fs.writeFileSync('./tuning/tuning.jsonl', jsonlData, 'utf8');
+    }).join('\n');
+    fs.writeFileSync('./tuning/tuning.jsonl', jsonl, 'utf8');
     const fileId = await client.uploadTuningFile('./tuning/tuning.jsonl');
     const fileId2 = await client.uploadTuningFile('./tuning/tuning.json');
     const jsonFile = await client.retrieveFile(fileId); 
@@ -135,6 +123,32 @@ async function main() {
     const fineTuneResponse = await client.createFineTuneJob(jsonFile.id);
     console.log('Fine-tuning job created successfully:', fineTuneResponse);
     return jsonFile2;
+}
+
+async function run(content, instructions) {
+    try {
+         const threadResponse = await createAIThread(content);
+         // runThreadResponse return a json object with thread_id
+         const runThreadResponse = await runAIThread(threadResponse.id, instructions);
+         console.log("Run thread response:", runThreadResponse);
+         if(runThreadResponse.status === 'completed') {
+            const jsonFile = await main();
+            console.log("JSON file created successfully:", jsonFile);
+             // Create a message in the thread
+            const message = await client.createMessage(runThreadResponse.thread_id, jsonFile.id);
+            if(message) {
+                console.log("Message:", message);
+                console.log("Message content:", message.content[0].text);
+                const msg = await client.getMessage(message, runThreadResponse.thread_id);
+                if(msg) {
+                     console.log("Message retrieved successfully:", msg.content[0].text);
+                }
+             }
+         }
+    }
+    catch (error) {
+        console.error("Error in run function:", error);
+    }
 }
 
 //main();
