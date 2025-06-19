@@ -11,6 +11,83 @@ class OpenAIClient {
             apiKey: this.apiKey
         });
         this.assistant_id = process.env.ASSISTANTID;
+        this.tools = [{
+            "type": "function",
+            "name": "returnCSVasBinary",
+            "description": "Return the output as binary.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "Item Name": {
+                        "type": "string",
+                        "description": "The name of the item. A concatenation of item name, item size and item color."
+                    },
+                    "Vendor Item Code": {
+                        "type": "string",
+                        "description": "An id for the vendor item"
+                    },
+                    "Packaging Information": {
+                        "type": "string",
+                        "description": "Sales description/packaging information about the item ie. 12.78 SF/BOX"
+                    },
+                    "Unit of Measure": {
+                        "type": "string",
+                        "description": "A unit of measure in either Square Foot/Feet (SF), Sheet (SHT), Each (EA), Box (BX), PC (Piece/Each)"
+                    },
+                    "Unit/Box": {
+                        "type": "number",
+                        "description": "a number of units per box"
+                    },
+                    "Item Color": {
+                        "type": "string",
+                        "description": "the item color ie. AV05 Ash"
+                    },
+                    "Item Size": {
+                        "type": "string",
+                        "description": "the item size ie. 2x8"
+                    },
+                    "PCs in a Box": {
+                        "type": "number",
+                        "description": "a number of pieces in a box ie. 1"
+                    },
+                    "SF by PC/SHEET": {
+                        "type": "number",
+                        "description": "a decimal value for each square foot per sheet"
+                    },
+                    "SF By Box": {
+                        "type": "number",
+                        "description": "a decimal value for square foot by box"
+                    },
+                    "Cost": {
+                        "type": "number",
+                        "description": "the cost of the item"
+                    },
+                    "Group": {
+                        "type": "string",
+                        "description": "the type of collection or series the item belongs to"
+                    },
+                    "Finish": {
+                        "type": "string",
+                        "description": "The type of finish of the product ie. Matte"
+                    }
+                },
+                "required": [
+                    "Item Name",
+                    "Vendor Item Code",
+                    "Packaging Information",
+                    "Unit of Measure",
+                    "Unit/Box",
+                    "Item Color",
+                    "Item Size",
+                    "PCs in a Box",
+                    "SF by PC/SHEET",
+                    "SF By Box",
+                    "Cost",
+                    "Group",
+                    "Finish"
+                ]
+            }
+        }];
     }
 
     // Method to upload a file to OpenAI then get the file ID to use it in the createResponse method
@@ -35,7 +112,7 @@ class OpenAIClient {
         const openai = this.client;
         return new Promise((resolve, reject) => {
             (async function() {
-            await openai.files.create({
+            openai.files.create({
                 file: fs.createReadStream(filePath),
                 purpose: 'fine-tune',
             }).then((response) => {
@@ -63,19 +140,30 @@ class OpenAIClient {
     }
 
     createFineTuneJob(fileId) {
-        return new Promise((resolve, reject) => {
-            this.client.fineTuning.jobs.create(
-            { 
-                training_file: fileId, 
-                model: process.env.MODEL || 'gpt-4o'
-            }).then((response) => {
-                resolve(response)
-            }).catch((error) => {
-                console.log("Error creating fine-tune job:", error);
-                reject(error);
+        try {
+            const openai = this.client;
+            return new Promise((resolve, reject) => {
+                (async function() {
+                    let fineTuneJob = await openai.fineTuning.jobs.create(
+                    { 
+                        training_file: fileId, 
+                        model: process.env.MODEL || 'gpt-4o'
+                    }).then((response) => {
+                        return response;
+                    }).catch((error) => {
+                        console.log("Error creating fine-tune job:", error);
+                        reject(error);
+                    });
+                    if(fineTuneJob) {
+                        resolve(fineTuneJob);
+                    }
+                })();
             });
+        }
+        catch(err) {
+            console.log('There was an error in createFineTuneJob');
+        }
         
-        });
     }
 
     // Method to create a response using the OpenAI API
@@ -85,12 +173,15 @@ class OpenAIClient {
         const data = fs.readFileSync(file);
         console.log('Reading file:', file);
         const base64 = data.toString('base64');
-        //const base64 = data.toString('utf8');
         console.log("Base64 data:", base64);
+        const tools = this.tools;
         const model = process.env.MODEL || 'gpt-4o';
         const instruct = `You are a data analyst able to read, analyze and extract data from PDF, Excel and CSV files. 
                           You will be provided with unstructured tabular data and your task is to analyze the data and infer values based on the fields given.
-                          Respond only with a CSV table, without any explanation, summary, or commentary. Do not add any introductory or concluding text.`;
+                          Respond only with a CSV table without any explanation, summary, or commentary. Do not add any introductory or concluding text.`;
+        // const instruct = `You are a data analyst able to read, analyze and extract data from PDF, Excel and CSV files. 
+        //                   You will be provided with unstructured tabular data and your task is to analyze the data and infer values based on the fields given.
+        //                   Respond only with a table and encode it in binary base64 string format without any explanation, summary, or commentary. Do not add any introductory or concluding text.`;
         const instructions = o.instructions ? instruct + '\n' + o.instructions : instruct; // Give it an algorithm to follow from index.js
         // Query the database table later for the fields for now hardcode them in the input.
         const i =  `Given the following fields with field types: ['Item Name VARCHAR', 'Vendor Item Code VARCHAR',
@@ -134,11 +225,13 @@ class OpenAIClient {
                                     // PTM POLISHED, PTM5,	0.90 SF/EA,	SHEET, 1, "CALACATTA GOLD , BRASS", 0.90,	28.80, MOSAIC
                                     // PTM POLISHED, PTM6,	1.00 SF/EA,	SHEET, 1, "CALACATTA GOLD, NERO MARQUINA , BRASS", 1.00, 30.00, MOSAIC
                                     type: 'input_text',
-                                    text: process.env.EXAMPLES + `\n I want ALL records (full file) to be returned in the CSV format. Consider this as confirmation.`
+                                    text: process.env.EXAMPLES + `\n I want ALL records to be returned in a CSV format. Consider this as confirmation.`
+                                    //text: process.env.EXAMPLES + `\n I want ALL records (full file) to be returned as a table encoded in binary base64 string format. Use the function tool 'returnCSVasBinary' on the attached PDF file. Consider this as confirmation.`
                                 }
                             ]
                         }
                     ],
+                //tools: tools
             }).then((response) => {
                 //const result = response.choices[0].message.content;
                 resolve(response);
@@ -161,16 +254,16 @@ class OpenAIClient {
                             content: content
                         },
                     ]
-                }).then((response) => {
-                    console.log("Thread created successfully:", response);
-                    return response;
-                }).catch((error)=> {
-                    console.error("Error creating thread:", error);
-                    return reject(error);
-                });
-                if(thread) {
-                    resolve(thread)
-                }
+                    }).then((response) => {
+                        console.log("Thread created successfully:", response);
+                        return response;
+                    }).catch((error)=> {
+                        console.error("Error creating thread:", error);
+                        return reject(error);
+                    });
+                    if(thread) {
+                        resolve(thread)
+                    }
                 })(openai);
             });
         }

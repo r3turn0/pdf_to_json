@@ -45,7 +45,7 @@ async function concatCSVs() {
 
 const content = `Find the following values for the fields provided in the files found in the Elite vector store. The fields are: 
 Item Name, Vendor Item Code, Packaging Information Unit of Measure, Unit/Box, Item Color, Item Size, PCs in a Box, SF by PC/SHEET, SF By Box, Cost, Group, Finish.\n
-For the Item Name concatenate Item Name, Item Size and Item Color together.\n`
+For the Item Name concatenate Item Name, Item Size and Item Color together into a new field called 'Display Name'.\n`
 + process.env.EXAMPLES;
 
 const instructions = `You are a data analyst able to read, analyze and extract data from PDF, Excel and CSV files.

@@ -59,7 +59,7 @@ class PdfConverter {
                     showColumnHeaders: true,
                     columnHeaders: ['pageNumber', 'lineItem', 'Item Name', 'Vendor Item Code',
                         'Sales Description', 'Unit of Measure', 'Unit/Box', 'Item Color', 'Item Size',
-                        'PCs in a Box', 'SF by PC/SHEET', 'SF By Box', 'Cost', 'Group'
+                        'PCs in a Box', 'SF by PC/SHEET', 'SF By Box', 'Cost', 'Group', 'Finish'
                     ],
                     fileExtension: 'csv',
                     useBom: true

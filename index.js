@@ -1,7 +1,6 @@
 const fs = require("fs");
 const { PdfConverter, XlsxConverter } = require('./convert.js');
 const openAiClient = require('./openai.js')
-const { mainModule } = require("process");
 require('dotenv').config();
 
 async function isPdfFile(filePath) {
@@ -141,20 +140,36 @@ async function main() {
     7.	Extract nearby values as potential candidates for the field.
     Finally: 
     8. Use regex after narrowing search area with embeddings/semantic search, for high precision.` 
+    
+    // instructions: `Parse the input file containing page numbers, line items, and field names, and insert the correct values for each field name based on the data contained in the line items column, which are separated by page. The output should be a table encoded in binary base64 string format for ALL records in ALL pages.
+    // Workflow:
+    // 1.	Chunk or window the unstructured text. 
+    // 2.	Create Embeddings for both fields/queries and chunks.
+    // 3.	Use sematic search algorithms to extract values based on field names.
+    // For each field ("Item Name", "Unit/Box", etc.):
+    // 4.	Generate semantic variants and synonyms (e.g., "pieces per box", "pcs in box", "units/box").
+    // 5.	Embed possible field names AND text blob using models (e.g., BERT, Sentence Transformers).
+    // 6.	Search your blob for the area semantically closest to the field using similarity measures (cosine similarity, etc.) between embeddings.
+    // 7.	Extract nearby values as potential candidates for the field.
+    // Finally: 
+    // 8. Use regex after narrowing search area with embeddings/semantic search, for high precision.` 
   }
   const response = await createOpenAiResponse(client, obj, file_obj, pdf);
   console.log('Response from OpenAI:', response);
   if(response.output_text) {
     const output = response.output_text;
+    //const decodedString = Buffer.from(output, 'base64').toString('utf-8');
+    //console.log("Output from OpenAI:", decodedString);
     console.log("Output from OpenAI:", output);
     const outputFile = `${outputDirectory}/${process.argv[5]}`;
+    //fs.writeFileSync(outputFile, decodedString);
     fs.writeFileSync(outputFile, output);
     console.log("Output written to:", outputFile); 
   }
 }
 
 // Execute the main function
-// Example usage: node index.js <input_directory> <output_directory> <output_file> <output_csv>
+// Example usage: node index.js <input_directory> <output_directory> <output_file_txt> <output_csv>
 // A retry function that calls the main process up to 3 times
 
 async function retry(count, completed) {
