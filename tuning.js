@@ -115,7 +115,7 @@ async function main() {
     }).join('\n');
     fs.writeFileSync('./tuning/tuning.jsonl', jsonl, 'utf8');
     const fileId = await client.uploadTuningFile('./tuning/tuning.jsonl');
-    const fileId2 = await client.uploadTuningFile('./tuning/tuning.json');
+    const fileId2 = await client.uploadFile('./tuning/tuning.json');
     const jsonFile = await client.retrieveFile(fileId); 
     const jsonFile2 = await client.retrieveFile(fileId2);
     console.log("File retrieved successfully:", jsonFile);
@@ -125,6 +125,7 @@ async function main() {
     return jsonFile2;
 }
 
+// For future notice content is what I received, instructions should 
 async function run(content, instructions) {
     try {
          const threadResponse = await createAIThread(content);
